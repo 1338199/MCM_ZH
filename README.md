@@ -1,2 +1,2 @@
 # MCM_ZH
-a Chinese version for 2020 MCM paper
+a Chinese spported version for 2020 MCM paper
