@@ -179,7 +179,7 @@ Living in the age that are characterized by a series of  troublesome environment
 \subsection{Analysis of task 1}
 
 \subsection{Analysis of task 2}
-\subsubsection{time-based measures for reputation}
+\subsubsection{Time-based measures for reputation}
 产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
 \begin{itemize}
 	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
@@ -190,6 +190,12 @@ Living in the age that are characterized by a series of  troublesome environment
 \end{itemize}
 对其他两类产品也可以作类似的处理，这些结果提示阳光公司xxxxx
 
+\subsubsection{Indication of potentially successful or failing product}
+正如上文中提到的信誉会随时间波动，那么我们拟合的曲线自然会有拐点。因此我们定义如果曲线将迎来极大值，那么这个产品将成为潜在的成功产品；如果曲线将迎来极小值，那么这个产品将成为潜在的失败产品。\\
+
+为了方便处理，我们建模时只考虑曲线的最大和最小值，可以通过对曲线最大、最小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
+
+在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 \section{Assumptions and justifications}
 
 To simplify the problem, we strive for the following assumptions:
@@ -250,7 +256,7 @@ energy consumption\\
 \section{Model for maximal plastic waste estimation based on Linear programming}
 \label{lp}
 
-\subsection{reputation-time model on RBF regression}
+\subsection{Reputation-time model based on RBF regression}
 探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
@@ -260,10 +266,10 @@ energy consumption\\
 		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
 	\end{itemize}
 	\item 将筛选出的样本代入信誉模型，得到样本信誉随时间变化的离散序列。
-	\item 我们利用matlab搭建RBF网络：
+	\item 搭建RBF网络：
 	\begin{enumerate}
 		\item 将样本的前一半作为训练集、后一半作为测试集，并作归一化处理
-		\item 设定网络的神经元数逐步增加,最多就是训练样本个数，spread系数设定为0.1，开始训练
+		\item 设定网络的神经元数逐步增加,最多就是训练样本个数，扩展速度spread设定为0.1，开始训练
 		\item 测试RBF网络，得到拟合结果图。
 	\end{enumerate}
 \end{enumerate}
@@ -272,9 +278,16 @@ energy consumption\\
 从图中我们可以得出以下结论：
 \begin{itemize}
 	\item Pacifier总的趋势是xxxx，Hair Dryer总的趋势是xxx，Microwave总的趋势是xxx，这可能是因为xxxxx
-	\item 对于Pacifier信誉最低出现在xxxx年xx月xx号，Hair Dryer信誉最低出现在xxxx年xx月xx号，Microwave信誉最低出现在xxxx年xx月xx号，追踪临近的评论，我们发现可能是因为xxxx，导致其信誉下降，这启示阳光公司xxxx。
-	\item 对于Pacifier信誉最高出现在xxxx年xx月xx号，Hair Dryer信誉最高出现在xxxx年xx月xx号，Microwave信誉最高出现在xxxx年xx月xx号，同样，我们追踪临近的评论，我们发现xxx可以使信誉提升，这启示阳光公司xxxx。
+	\item 对于Pacifier信誉最低出现在xxxx年xx月xx号，Hair Dryer信誉最低出现在xxxx年xx月xx号，Microwave信誉最低出现在xxxx年xx月xx号。具体的原因分析我们将在下一问中进行阐述。
+	\item 对于Pacifier信誉最高出现在xxxx年xx月xx号，Hair Dryer信誉最高出现在xxxx年xx月xx号，Microwave信誉最高出现在xxxx年xx月xx号。同样，我们将在下一问讨论出现该现象的原因。
 \end{itemize}
+
+\subsection{Model to indicate potentially successful or failing product}
+在我们的建模中，拟合曲线最大值附近常出现的主题词和星级是出现潜在成功产品的标志，而拟合曲线最小值附近常出现的主题词和星级是出现潜在失败产品的标志。\\
+
+以Pacifier为例，根据图\ref{}, 拟合曲线最大值出现的时间点为xxxx年xx月xx日（标记为$t_{1}$)，拟合曲线最小值出现的时间点为xxxx年xx月xx日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
+
+我们发现，最大值附近，xxx和xx容易出现，这很可能是因为xxxx；最小值附近，xx和xxx容易出现，而这可能是因为xxx。
 
 %We noticed that this puzzle is a maximization problem with several limiting conditions. So linear programming(LP) must be the best way to approach the answer we want.
 
