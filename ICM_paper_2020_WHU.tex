@@ -67,6 +67,7 @@
 \usepackage{caption}
 \usepackage{subfigure}
 \usepackage{float}
+\usepackage{xeCJK}
 \usepackage{verbatim}
 \title{塑料Global Plastic Waste Model based on Linear Programming and Support Vector Regression}
 \author{Team 2013573}
@@ -177,6 +178,18 @@ Living in the age that are characterized by a series of  troublesome environment
 \section{Model Analysis}
 \subsection{Analysis of task 1}
 
+\subsection{Analysis of task 2}
+\subsubsection{time-based measures for reputation}
+产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
+\begin{itemize}
+	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
+	\item 然后利用信誉转换模型得到所有样本的信誉
+	\item 接着以一天为单位时间，利用RBF神经网络，对信誉与时间作拟合
+	\item 最后，根据拟合曲线，我们发现
+	philips奶嘴的信誉总的变化趋势是xxxx，在xxxx年xx月xx日最低，xxxx年xx月xx日达到最低
+\end{itemize}
+对其他两类产品也可以作类似的处理，这些结果提示阳光公司xxxxx
+
 \section{Assumptions and justifications}
 
 To simplify the problem, we strive for the following assumptions:
@@ -236,6 +249,32 @@ energy consumption\\
 
 \section{Model for maximal plastic waste estimation based on Linear programming}
 \label{lp}
+
+\subsection{reputation-time model on RBF regression}
+探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
+\begin{enumerate}
+	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
+	\begin{itemize}
+		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本。
+		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本。
+		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
+	\end{itemize}
+	\item 将筛选出的样本代入信誉模型，得到样本信誉随时间变化的离散序列。
+	\item 我们利用matlab搭建RBF网络：
+	\begin{enumerate}
+		\item 将样本的前一半作为训练集、后一半作为测试集，并作归一化处理
+		\item 设定网络的神经元数逐步增加,最多就是训练样本个数，spread系数设定为0.1，开始训练
+		\item 测试RBF网络，得到拟合结果图。
+	\end{enumerate}
+\end{enumerate}
+我们最后得到的拟合结果图如下所示：\\
+
+从图中我们可以得出以下结论：
+\begin{itemize}
+	\item Pacifier总的趋势是xxxx，Hair Dryer总的趋势是xxx，Microwave总的趋势是xxx，这可能是因为xxxxx
+	\item 对于Pacifier信誉最低出现在xxxx年xx月xx号，Hair Dryer信誉最低出现在xxxx年xx月xx号，Microwave信誉最低出现在xxxx年xx月xx号，追踪临近的评论，我们发现可能是因为xxxx，导致其信誉下降，这启示阳光公司xxxx。
+	\item 对于Pacifier信誉最高出现在xxxx年xx月xx号，Hair Dryer信誉最高出现在xxxx年xx月xx号，Microwave信誉最高出现在xxxx年xx月xx号，同样，我们追踪临近的评论，我们发现xxx可以使信誉提升，这启示阳光公司xxxx。
+\end{itemize}
 
 %We noticed that this puzzle is a maximization problem with several limiting conditions. So linear programming(LP) must be the best way to approach the answer we want.
 
