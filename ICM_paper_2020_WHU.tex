@@ -180,11 +180,11 @@ Living in the age that are characterized by a series of  troublesome environment
 
 \subsection{Analysis of task 2}
 \subsubsection{Rating-review based reputation model}
-我们可以从产品的星级和评论推断出产品的声誉，而一个产品的声誉越好往往意味着产品的销售前景越好，在这里，我们不能单纯地用星级或评价衡量一个产品的声誉，因为生活中往往存在着“五星好评”和“一星黑粉”的情况。因此我们综合运用星级和评论构造出声誉的模型，通过比对产品的声誉，阳光公司可以针对性提升声誉高的产品的备货量和宣传力度。
+我们可以从产品的星级和评论推断出产品的声誉，而一个产品的声誉越好往往意味着产品的潜在销售量越高，在这里，我们不能单纯地用星级或评价衡量一个产品的声誉，因为生活中往往存在着“五星好评”和“一星黑粉”的情况。因此我们综合运用星级和评论构造出声誉的模型，通过比对产品的声誉，阳光公司可以针对性提升声誉高的产品的备货量和宣传力度。
 
 同样，声誉的计算需要先对某一产品的评论进行LDA处理，转化为离散的等级值, 为了考虑评论的可信度，我们还考虑了vine, verified\_purchase, helpful\_votes, tot\_votes几个字段，这些字段可以对评论的准确度进行衡量，因为购买过产品的评论才更可信，helpful votes高的评论才更具有参考性。
 
-通过建模，并对2015年7月-8月评论数大于25的pacifer样本进行计算，我们发现，在7-8月，样本xxxx的声誉更高，销售前景最大；样本xxxx的声誉最低，销售前景最差。
+通过建模，并对xxxx年xx月的pacifer样本(xxx,xxx,xxx,xxx)计算，我们发现，在该月内，样本xxxx的声誉更高，而xxxx的评论数也确实是最多的，说明我们的模型确实是可靠的。
 
 \subsubsection{Relations between time and reputation}
 产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
@@ -219,7 +219,7 @@ Living in the age that are characterized by a series of  troublesome environment
 题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。我们可以判定这还是一个统计学问题。以吹风机为例
 \begin{itemize}
 	\item 首先，我们挑选吹风机中含关键词的评论。
-	\item 然后，我们对含关键词的评论进行0,1编码。
+	\item 然后，我们基于是否含关键词，对评论进行0,1编码。
 	\item 接着因为自变量只有是否含关键词，所以我们继续使用单因素方差分析，寻找关键词与星级之间的关系。
 	\item 最后，根据统计结果，我们发现
 	含关键词xxx的评论和星级xxx密切相关。
@@ -285,17 +285,17 @@ energy consumption\\
 \section{Model Construction}
 \label{lp}
 \subsection{Rating-review based reputation model}
-通过对评级和评论建模可以得出产品的综合声誉，而更高的声誉往往意味着更好的销售前景，可以帮助阳光公司作出更好的决策。建模过程如下：
+通过对评级和评论建模可以得出产品的信誉，而更高的信誉意味着更高的潜在销量，可以帮助阳光公司作出更好的决策。建模过程如下：
 
-假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净有用投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
+假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
 
 我们采用对数形式使得离散的各参数值更平滑，信誉模型初步建立为：
 \begin{equation}
-	F_{repu} =  log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+1)+1)
+	F_{repu} =  log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+2))
 	\label{priA}
 \end{equation}
 
-为了方便处理，在模型中，当净有用投票数为负数时，统一设为-1，即这种评论对声誉没有贡献。更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，而vine或者verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
+更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，我们认为vine字段和verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
 \begin{equation}
 	\beta =\left\{\begin{matrix}
 xx & if &vine &or &verified\_pruchase = 'Y'\\ 
@@ -304,26 +304,11 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 \label{hyperbeta}
 \end{equation}
 其中xx为上文中提到的xxx关系系数。
-为了检验我们的模型，我们先统计了从2015年7-8月的所有评论数在25条以上pacifier样本，分别为：
-\begin{itemize}
-	\item philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary, 标注为Sample1
-	\item wubbanub soft toy and pacifier，标注为Sample2
-	\item wubbanub brown monkey pacifier, 标注为Sample3
-	\item wubbanub infant pacifier - giraffe, 标注为Sample4
-	\item philips aventbpa free soothie pacifier, 3+ months, green, 2 count, 标注为Sample5
-	\item wubbanub brown puppy pacifier, 标注为Sample6
-\end{itemize}
-然后我们对6种样本计算了这5天内的平均声誉值，结果如图：
+为了验证模型的准确性，我们对xxxx年xx月xx号的所有pacifier产品做了声誉值计算，结果如图：
 
-%然后我们又统计了整个2015年8月，pacifier这6种样本的有效评论数(vine或verified purchase为yes)，近似表征该月的销量：
-%\begin{figure}[H] 
-%	\centering 
-%	\includegraphics[width=0.6\textwidth]{figures/valid_review.png} 
-%	\caption{The number and proportion of valid reviews of six samples in August 2015}
-%	\label{valid_review} %用于文内引用的标签
-%	
-%\end{figure}
-图中说明，2015年7月-8月pacifier中的xxxx产品声誉值最高，意味着更好的销售前景，xxx产品声誉值最低，意味着销售前景并不明朗。
+然后我们又统计了该月pacifier各类产品的vine或verified purchase评论数近似作为该月的销量：
+
+图中说明，pacifier中的xxxx产品声誉值更高，其在该月的潜在销量也越高。
 \subsection{Reputation-time model based on RBF regression}
 探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
@@ -356,6 +341,45 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 以Pacifier为例，根据图\ref{}, 拟合曲线最大值出现的时间点为xxxx年xx月xx日（标记为$t_{1}$)，拟合曲线最小值出现的时间点为xxxx年xx月xx日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
 
 我们发现，最大值附近，xxx和xx容易出现，这很可能是因为xxxx；最小值附近，xx和xxx容易出现，而这可能是因为xxx。
+
+
+\subsection{Model to relationship between specific star ratings and more reviews}
+在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA 建立如下\\
+\begin{enumerate}
+	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
+	\begin{itemize}
+		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本。
+		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本。
+		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
+	\end{itemize}
+	\item 进一步筛选样本，去除评论和星级不符的评论。
+	\item 假设第$i$种产品的第$s_j$条至$s_{j+k}$条星级能引起关注的时间段为$d$天，则设$C_{iskd}$即为自这条星级起，以后$d$天的会受到之前星级影响的评论总数。我们需要挖掘第$s_j$条至$s_{j+k}$条星级的平均星级$\frac{\sum_{i=j}^{j+k}s_i}{k}$与$C_{iskd}$的关系：
+	平均星级可以为$[1,5]$之间任意值，为了方便寻求关系，我们将其离散化，可以通过将$[1,5]$均分为$r$个小区间，每个小区间对应为一类，再将$\frac{\sum_{i=j}^{j+k}s_i}{k}$根据其大小分到不同的类别$A_p$中。所以，问题被转化成特定的星级区间$A_p$，是否对应更多的评论数$C_{iskd}$。由于只考虑星级对评论数的影响，我们采用单因素方差分析。
+\end{enumerate}
+我们最后得到的统计结果图如下所示：\\
+
+从图中我们可以得出以下结论：
+\begin{itemize}
+	\item 当用户看到星级为xxx时，更愿意对产品进行评论
+	\item 当用户看到星级为xxx时，更不愿意对产品进行评论
+\end{itemize}
+
+\subsection{Model to relationship between specific quality descriptors of text-based reviews and rating levels}
+要判断是否在评论中出现关键词和星级是否有关，显然只有是否出现关键词一个自变量，所以我们仍然采用单变量方差分析，我们的Model to relationship between specific quality descriptors of text-based reviews and rating levels based on One-Way ANOVA 建立如下\\
+\begin{enumerate}
+	\item 我们先对数据进行筛选，选出了评论中含‘enthusiastic’,‘disappointed’的样本
+	\item 进一步筛选样本，因为有人会在‘disappointed’前加‘not’，使意思相反，所以去除这些样本
+	\item 基于评论是否含含关键词进行热编码分类，并基于此进行单因素方差分析。
+\end{enumerate}
+我们最后得到的统计结果图如下所示：\\
+
+从图中我们可以得出以下结论：
+\begin{itemize}
+	\item 当用户看到星级为xxx时，更愿意对产品进行评论
+	\item 当用户看到星级为xxx时，更不愿意对产品进行评论
+\end{itemize}
+
+
 
 %We noticed that this puzzle is a maximization problem with several limiting conditions. So linear programming(LP) must be the best way to approach the answer we want.
 
