@@ -179,7 +179,14 @@ Living in the age that are characterized by a series of  troublesome environment
 \subsection{Analysis of task 1}
 
 \subsection{Analysis of task 2}
-\subsubsection{Time-based measures for reputation}
+\subsubsection{Rating-review based reputation model}
+我们可以从产品的星级和评论推断出产品的声誉，而一个产品的声誉越好往往意味着产品的潜在销售量越高，在这里，我们不能单纯地用星级或评价衡量一个产品的声誉，因为生活中往往存在着“五星好评”和“一星黑粉”的情况。因此我们综合运用星级和评论构造出声誉的模型，通过比对产品的声誉，阳光公司可以针对性提升声誉高的产品的备货量和宣传力度。
+
+同样，声誉的计算需要先对某一产品的评论进行LDA处理，转化为离散的等级值, 为了考虑评论的可信度，我们还考虑了vine, verified\_purchase, helpful\_votes, tot\_votes几个字段，这些字段可以对评论的准确度进行衡量，因为购买过产品的评论才更可信，helpful votes高的评论才更具有参考性。
+
+通过建模，并对xxxx年xx月的pacifer样本(xxx,xxx,xxx,xxx)计算，我们发现，在该月内，样本xxxx的声誉更高，而xxxx的评论数也确实是最多的，说明我们的模型确实是可靠的。
+
+\subsubsection{Relations between time and reputation}
 产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
 \begin{itemize}
 	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
@@ -253,9 +260,33 @@ energy consumption\\
 	\end{tabular} 
 \end{table}
 
-\section{Model for maximal plastic waste estimation based on Linear programming}
+\section{Model Construction}
 \label{lp}
+\subsection{Rating-review based reputation model}
+通过对评级和评论建模可以得出产品的信誉，而更高的信誉意味着更高的潜在销量，可以帮助阳光公司作出更好的决策。建模过程如下：
 
+假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
+
+我们采用对数形式使得离散的各参数值更平滑，信誉模型初步建立为：
+\begin{equation}
+	F_{repu} =  log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+2))
+	\label{priA}
+\end{equation}
+
+更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，我们认为vine字段和verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
+\begin{equation}
+	\beta =\left\{\begin{matrix}
+xx & if &vine &or &verified\_pruchase = 'Y'\\ 
+1-xx,& else
+\end{matrix}\right.
+\label{hyperbeta}
+\end{equation}
+其中xx为上文中提到的xxx关系系数。
+为了验证模型的准确性，我们对xxxx年xx月xx号的所有pacifier产品做了声誉值计算，结果如图：
+
+然后我们又统计了该月pacifier各类产品的vine或verified purchase评论数近似作为该月的销量：
+
+图中说明，pacifier中的xxxx产品声誉值更高，其在该月的潜在销量也越高。
 \subsection{Reputation-time model based on RBF regression}
 探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
