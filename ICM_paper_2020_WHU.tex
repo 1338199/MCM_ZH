@@ -203,6 +203,28 @@ Living in the age that are characterized by a series of  troublesome environment
 为了方便处理，我们建模时只考虑曲线的最大和最小值，可以通过对曲线最大、最小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
 
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
+
+\subsubsection{relationship between specific star ratings and more reviews}
+特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。以吹风机为例
+\begin{itemize}
+	\item 首先，我们挑选吹风机中评论数最多的样本--'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple'(样本数为587)
+	\item 然后统计该产品的不同时间段间的评论数，以及时间段之前的平均星级。
+	\item 接着因为自变量只有星级，所以我们使用单因素方差分析，寻找星级与评论之间的关系。
+	\item 最后，根据统计结果，我们发现
+	在一段时间内的平均星级为xxx的产品，有更多的评论
+\end{itemize}
+对其他两类产品也可以作类似的处理。
+
+\subsubsection{relationship between specific quality descriptors of text-based reviews and rating levels}
+题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。我们可以判定这还是一个统计学问题。以吹风机为例
+\begin{itemize}
+	\item 首先，我们挑选吹风机中含关键词的评论。
+	\item 然后，我们对含关键词的评论进行0,1编码。
+	\item 接着因为自变量只有是否含关键词，所以我们继续使用单因素方差分析，寻找关键词与星级之间的关系。
+	\item 最后，根据统计结果，我们发现
+	含关键词xxx的评论和星级xxx密切相关。
+\end{itemize}
+对其他两类产品也可以作类似的处理，总结，得出结论。
 \section{Assumptions and justifications}
 
 To simplify the problem, we strive for the following assumptions:

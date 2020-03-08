@@ -22,12 +22,12 @@ int main() {
 
     srand((unsigned int)time(NULL));
  
-    shuffle((int *)&table[0], 9);
+    // shuffle((int *)&table[0], 9);
  
-    while(!put_line(1))
-    {
-        shuffle((int *)&table[0], 9);
-    }
+    // while(!put_line(1))
+    // {
+    //     shuffle((int *)&table[0], 9);
+    // }
 	
     for(int x = 0; x < 9; x++){
         for(int y = 0; y < 9; y++){
