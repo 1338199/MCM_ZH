@@ -38,6 +38,7 @@ Temporary Items
 *.lot
 *.fls
 *.out
+*.pdf
 *.toc
 *.fmt
 *.fot
