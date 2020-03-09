@@ -141,25 +141,20 @@ Wish the given advice above would contribute to your work!
 \setcounter{page}{1}
 \section{Introduction}
 \subsection{Background}
+对于亚马逊等电商平台来说，最不缺的就是顾客的评价和评论，评级通常用1到5星五个等级来表达，而文本评论让客户有了表达更多想法和反馈的机会。但是如何利用好这庞大的评价和评级数据却也是个不小的挑战。运用好这些数据不仅能帮助商家针对性地提供客户服务，还能发现潜在的高销量以及低销量商品，进行运营策略的调整，或者及时地改善产品。
 
-The plastic industry can date back to1950s. Over the past 60 years, the production of plastic has grown rapidly, which has surpassed most other artificial materials\cite{Geyer}. While people then did not realize the potential negative influence of plastic usage to ecosystem, plastic waste gradually accumulated in the environment because of it’s non-biodegradable trait. Some scholar believe that plastic bags and Styrofoam containers can take up to 1,000 years to decompose\cite{Giacovelli}. 6,300Mt plastic waste has been generated in 2015, while only 9\% of which had been recycled and reused. 12\% of them were incinerated and the percentage of plastics that discarded in landfills or natural environment was up to 79\%\cite{Geyer}. Plastics in nature especially in the ocean will cause a series of ecological problems. Apart form the chemical affects to organisms, plastic ingestion and entanglement are also threatening the diversity of species\cite{LI}. It is easy to imagine that if no measure is taken, human will facing severe degradation and pollution caused by enormous plastic waste.
-
-Besides, the management of the plastic waste is one of the hardest issue on integrated municipal solid waste. There are many researches that focus on the plastic recovery routes based on the life cycle assessment approach (LCA) \cite{Rigamonti}, and a few methods to assess the impact of solid waste system and technologies, which aim at develop more effective ways to migrate the plastic waste problem\cite{Kirkeby}.
-
-However, it seems that there are few researchers that explored the valuation model of estimating the maximal use of plastics nor utility policy to reduce the usage of plastics remarkably. That indicates there is still room for further explanation in this area. 
-
-%The management of the plastic waste is one of the most controversial topic in the discussion on integrated municipal solid waste area.
 
 \subsection{Problem statement}
 
-Living in the age that are characterized by a series of  troublesome environmental problems, such as global warming, desertification, pollution of water and poor air quality. Our team is hired to estimate the maximal permitted amount of plastic products, migrate the plastic production and reduce plastic waste. In another word, we need to answer the following questions:
+现在，阳光公司打算在线推出三款新的产品，分别是：微波炉，婴儿奶嘴以及吹风机，并获取了客户的历史评级和评论。他们希望从评论，评级中挖掘出有效的信息，帮助公司更好地制定销售策略，增强产品的效用。他们希望以下的问题能得到合理的解决：
 
 \begin{enumerate}
-	\item What is the maximal level of single-use or disposable plastic products without further pollution?
-	\item What extent can plastic waste be reduced to?
-	\item What is the minimal achievable level of global single-use or disposable plastic products and what are the impact on certain facets of reaching this level?
-	\item How to solve the equity problem about plastic waste that arise from global crisis?
-	\item How to build a timeline to approuch our target level we set before and describe our exploration to ICM?
+	\item 产品的星级，评论和帮助评分之间到底有什么样的关系?能否把评论量化，探究三者之间的数学联系？
+	\item 怎样建立一个模型能综合评级和评论两个因素，并帮助公司获取有效信息，调整营销策略？
+	\item 是否能从时间的角度描述产品的信誉，从而能看出产品在在线市场上的声誉变化？
+	\item 根据文本评价和评级，我们怎么才能发现潜在的成功或失败的产品?
+	\item 特定的星级与评论数之间是否有关联?换句话说什么样的评级更能吸引客户进行评论？
+	\item 文本评价的主题词例如：‘高兴’，‘失望’是否和特定的评级紧密相关？
 \end{enumerate}
 
 %\subsection{Our work}
@@ -187,7 +182,7 @@ Living in the age that are characterized by a series of  troublesome environment
 通过建模，并对2015年7月-8月评论数大于25的pacifer样本进行计算，我们发现，在7-8月，样本'wubbanub soft toy and pacifier'的声誉更高，销售前景最大；样本'philips aventbpa free soothie pacifier, 3+ months, green, 2 count'的声誉最低，销售前景最差。
 
 \subsubsection{Relations between time and reputation}
-产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络\cite{}对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
+产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络\cite{li2016nonlinear}对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
 \begin{itemize}
 	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
 	\item 然后利用信誉转换模型得到所有样本的信誉
@@ -199,7 +194,7 @@ Living in the age that are characterized by a series of  troublesome environment
 \subsubsection{Indication of potentially successful or failing product}
 正如上文中提到的信誉会随时间波动，那么我们拟合的曲线自然会有拐点。因此我们定义如果曲线将迎来极大值，那么这个产品将成为潜在的成功产品；如果曲线将迎来极小值，那么这个产品将成为潜在的失败产品。\\
 
-为了方便处理，我们建模时只考虑曲线的最大和最小值，可以通过对曲线最大、最小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
+为了方便处理，我们建模时只考虑曲线的一组极大和极小值，可以通过对曲线极大、极小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
 
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 
@@ -280,13 +275,13 @@ energy consumption\\
 \end{table}
 
 \section{Model Construction}
-\label{lp}
 \subsection{Rating-review based reputation model}
+\label{task_b}
 通过对评级和评论建模可以得出产品的信誉，而更高的信誉意味着更高的潜在销量，可以帮助阳光公司作出更好的决策。建模过程如下：
 
 假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
 
-我们采用对数形式使得中间计算更平滑，然后对该时段的信誉进行平均，最后用指数形式对结果差异进行放大,信誉模型初步建立为：
+我们采用对数形式使得中间计算更平滑，然后对该时段的信誉进行平均，最后参考文章\cite{subkhankulova2006comparative}用指数形式对结果差异进行放大,信誉模型初步建立为：
 \begin{equation}
 	F_{repu} =  e^{\frac{\sum_{i=1}^{n}(log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+1)+1))}{n}}
 	\label{priA}
@@ -326,7 +321,9 @@ W_{r},& else
 图中说明，2015年7月-8月pacifier中的Sample2、Sample4属于同一档，产品声誉值较高，意味着更好的销售前景; 其次是Sample3和Smaple6属于同一档; 最后是Sample1,Sample5属于同一档，声誉值较低，意味着销售前景并不明朗。事实上，我们发现Sample5的评级里确实充斥着1星，2星，评论中也不乏许多差评。
 
 \subsection{Reputation-time model based on RBF regression}
-探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
+探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。受到\cite{tang2015user}的启发，我们可以采用神经网络进行信誉的拟合及预测。
+
+此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
 	\begin{itemize}
@@ -368,15 +365,15 @@ W_{r},& else
 \end{itemize}
 
 \subsection{Model to indicate potentially successful or failing product}
-在我们的建模中，拟合曲线最大值附近常出现的主题词和星级是出现潜在成功产品的标志，而拟合曲线最小值附近常出现的主题词和星级是出现潜在失败产品的标志。\\
+在我们的建模中，拟合曲线极大值附近常出现的主题词和星级是出现潜在成功产品的标志，而拟合曲线极小值附近常出现的主题词和星级是出现潜在失败产品的标志。\\
 
-以Pacifier为例，根据图\ref{}, 拟合曲线最大值出现的时间点为xxxx年xx月xx日（标记为$t_{1}$)，拟合曲线最小值出现的时间点为xxxx年xx月xx日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
+以Pacifier为例，根据图\ref{curve_pacifier}, 拟合曲线极大值出现的时间点为2015年5月10日左右（标记为$t_{1}$)，拟合曲线最小值出现的时间点为2015年5月30日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
 
-我们发现，最大值附近，xxx和xx容易出现，这很可能是因为xxxx；最小值附近，xx和xxx容易出现，而这可能是因为xxx。
+我们发现，极大值附近，xxx和xx容易出现，这很可能是因为xxxx；极小值附近，xx和xxx容易出现，而这可能是因为xxx。
 
 
 \subsection{Model to relationship between specific star ratings and more reviews}
-在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA 建立如下\\
+在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析\cite{stoline1981status}，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA 建立如下\\
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
 	\begin{itemize}
@@ -1137,6 +1134,29 @@ As can be seen from the table \ref{spc}, the shadow price of China's marine garb
 
 In terms of natural resources, air has the largest shadow price. For China, priority should be given to reducing the production and use of plastics with more air pollution as much as possible, which will have the most obvious ecological benefits to the region.
 
+\section{Sensitivity Analysis}
+\subsection{Hyper-parameter $\beta$}
+在我们的声誉模型中，超参数$\beta$被设定为与关系系数$W_{r}$相关，并且我们认为评论比评级更重要\cite{zhang2006lord}，尤其是体验过产品后写下的评论，因为这是人们经过仔细思考后写下的感受，更能反映客户体验。因此，在我们的模型中$\beta$会增大评论的权重。
+
+事实上，我们发现我们的模型对$\beta$具有一定的鲁棒性，即$\beta$的轻微波动不会影响声誉的最终结果：
+
+我们分别把$\beta$公式Eq.\ref{hyperbeta}中的$W_{r}$从0.61换成了0.2和1.2，重新对section \ref{task_b}中的样本进行了计算，结果如下：
+\begin{figure}[H] 
+\begin{minipage}[t]{0.48\linewidth}	
+	\centering 
+	\includegraphics[width=1\textwidth]{figures/reputations_n.png} 
+	\caption{The reputations of six samples calculated from July to August 2015 with lower $\beta$}
+	\label{reputations_n} %用于文内引用的标签
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}	
+	\centering 
+	\includegraphics[width=1\textwidth]{figures/reputations_nn.png} 
+	\caption{The reputations of six samples calculated from July to August 2015 with higher $\beta$}
+	\label{reputations_nn} %用于文内引用的标签
+\end{minipage}
+\end{figure}
+对比Fig.\ref{reputations}, Fig.\ref{reputations_n}和Fig.\ref{reputations_nn}我们可以看到虽然声誉值的绝对大小改变了，但相对大小没有改变。Sample2, Sample4仍旧是第一档声誉的产品，Sample5依旧是样本中声誉处于最差一类的产品。
 \section{Strength and weakness}
 
 %In this section, we will discuss some other details about the model.
@@ -1186,6 +1206,32 @@ To mitigate the plastic waste problem, we establish a linear programming base mo
 \bibitem{CGE}CGE model-encyclopedia of MBA think tanks. https://wiki.mbalib.com/wiki/CGE. Accessed 18 Feb. 2020.
 \bibitem{Analytic}Analytic Hierarchy Process - Wikipedia. https://en.wikipedia.org/wiki/Analytic\_hierarchy\_process. Accessed 18 Feb. 2020.
 
+
+%%%%
+\bibitem{li2016nonlinear}
+M.~M. Li and B.~Verma, ``Nonlinear curve fitting to stopping power data using
+  rbf neural networks,'' \emph{Expert Systems with Applications}, vol.~45, pp.
+  161--171, 2016.
+  
+  
+\bibitem{stoline1981status}
+M.~R. Stoline, ``The status of multiple comparisons: simultaneous estimation of
+  all pairwise comparisons in one-way anova designs,'' \emph{The American
+  Statistician}, vol.~35, no.~3, pp. 134--141, 1981.
+
+\bibitem{tang2015user}
+D.~Tang, B.~Qin, T.~Liu, and Y.~Yang, ``User modeling with neural network for
+  review rating prediction,'' in \emph{Twenty-Fourth International Joint
+  Conference on Artificial Intelligence}, 2015.
+  
+\bibitem{subkhankulova2006comparative}
+T.~Subkhankulova and F.~J. Livesey, ``Comparative evaluation of linear and
+  exponential amplification techniques for expression profiling at the
+  single-cell level,'' \emph{Genome biology}, vol.~7, no.~3, p. R18, 2006. 
+
+\bibitem{zhang2006lord}
+X.~Zhang and C.~Dellarocas, ``The lord of the ratings: is a movie's fate is
+  influenced by reviews?'' \emph{ICIS 2006 proceedings}, p. 117, 2006.
 
 \end{thebibliography}
 
