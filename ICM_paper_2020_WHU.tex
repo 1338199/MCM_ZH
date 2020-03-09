@@ -274,6 +274,8 @@ Important symbols that in this article are listed in Table \ref{notation}.
 		$\theta$ & The percentage of GDP plastic industry contributes, quantified by coefficient.\\
 		$\iota$ & Tossil fuel consumption percentage. Generally, $\iota$ equals 4\%.\\
 		$k$ & Proportional coefficient of carbon emission per unit of
+		$\overline{s_j}$
+
 energy consumption\\
 		\bottomrule 
 		\label{notation}
@@ -351,30 +353,159 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
 	\end{itemize}
 	\item 进一步筛选样本，去除评论和星级不符的评论。
-	\item 假设第$i$种产品的第$s_j$条至$s_{j+k}$条星级能引起关注的时间段为$d$天，则设$C_{iskd}$即为自这条星级起，以后$d$天的会受到之前星级影响的评论总数。我们需要挖掘第$s_j$条至$s_{j+k}$条星级的平均星级$\frac{\sum_{i=j}^{j+k}s_i}{k}$与$C_{iskd}$的关系：
-	平均星级可以为$[1,5]$之间任意值，为了方便寻求关系，我们将其离散化，可以通过将$[1,5]$均分为$r$个小区间，每个小区间对应为一类，再将$\frac{\sum_{i=j}^{j+k}s_i}{k}$根据其大小分到不同的类别$A_p$中。所以，问题被转化成特定的星级区间$A_p$，是否对应更多的评论数$C_{iskd}$。由于只考虑星级对评论数的影响，我们采用单因素方差分析。
+	\item 然后我们将时间分段，以$d$天（商业一般为7天）为一个周期，假设在下一个周期的评论与上一个周期的平均星级有关。接着，统计第$i$种产品的在第$j$个时间段的平均星级$\overline{s_j}$，以及下一个时间段的评论数$C_{j+1}$。我们需要挖掘$\overline{s_j}$与$C_{j+1}$的关系：
+	平均星级可以为$[1,5]$之间任意值，为了方便寻求关系，我们将其离散化，可以通过将$[1,5]$均分为4个小区间，每个小区间对应为一类，再将$\overline{s_j}$根据其大小分到不同的类别$A_p$中。所以，问题被转化成特定的星级区间$A_p$，是否对应更多的下一个时间段的评论数$C_{j+1}$。由于只考虑星级对评论数的影响，我们采用单因素方差分析。
+\end{enumerate}
+单因素方差分析要求各变量服从正态分布，且满足方差齐：\\
+\begin{table}[htb]
+	\center
+	\caption{Test of Homogeneity of Variances}
+	\label{type}
+	\begin{tabular}{c|c|c|c}
+		\hline
+		\textbf{Levene Statistic} & \textbf{df1}& \textbf{df2}& \textbf{Sig.} \\ \hline 
+		2.054                     & 2           & 812         & 0.129         \\ \hline
+	\end{tabular}
+\end{table}
+从图中我们发现满足方差齐，可以运用单因素方差分析：\\
+\begin{table}[htb]
+	\center
+	\caption{ANOVA}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c}
+		\hline
+		\textbf{ } & \textbf{Sum of Squares} & \textbf{df}& \textbf{Mean Square}& \textbf{F}&  \textbf{Sig.} \\ \hline 
+		Between Groups                     & 12.31           & 2         & 6.15    &16.599 &0.001   \\ 
+		Within Groups                     & 13402.85          & 812         & 16.51    &  & \\ \hline		
+	\end{tabular}
+\end{table}
+从图中我们可以发现
+\begin{itemize}
+	\item 在当前时间内的平均星级与下一个时间段内的评论总数间关系不强
+\end{itemize}
+后来，我们又对评论进行了语义分析：
+\begin{enumerate}
+	\item 我们将评论根据语义分析的结果，分为了正面评价，中等评价，负面评价。
+	\item 然后我们统计时间段内正面平均，中等评价，负面评价的占比与$A_p$的关系
 \end{enumerate}
 我们最后得到的统计结果图如下所示：\\
 
+\begin{table}[htb]
+	\center
+	\caption{Descriptive of the percentage of negative comment}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{rating} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		2        & 2             & 56.25           & 8.83         & 6.25    & 16.599 & 0.001    \\
+		3          & 18           & 36.64           & 42.52         & 10.05    &  & \\
+		4            & 175         & 8.68           & 19.47         & 1.47    &  & \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\center
+	\caption{Descriptive of the percentage of medium comment}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{rating} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		2        & 2             & 37.50           & 17.68         & 12.50    & 0.40 & 0.671    \\
+		3          & 18           & 20.40           & 27.16         & 6.40    &  & \\
+		4            & 175         & 22.32           & 25.52         & 1.93    &  & \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\center
+	\caption{Descriptive of the percentage of medium comment}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{rating} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		2        & 2             & 6.25           & 8.83         & 6.25    & 9.828 & 0.001    \\
+		3          & 18           & 42.95           & 40.88         & 9.64    &  & \\
+		4            & 175         & 68.99           & 29.36         & 2.21    &  & \\ \hline
+	\end{tabular}
+\end{table}
+
 从图中我们可以得出以下结论：
 \begin{itemize}
-	\item 当用户看到星级为xxx时，更愿意对产品进行评论
-	\item 当用户看到星级为xxx时，更不愿意对产品进行评论
+	\item 在面对一段时间内产品都是低等星级时，用户更愿意给出负面评价。
+	\item 在面对一段时间内产品都是高星级时，用户更愿意给出正面评价。
 \end{itemize}
 
 \subsection{Model to relationship between specific quality descriptors of text-based reviews and rating levels}
 要判断是否在评论中出现关键词和星级是否有关，显然只有是否出现关键词一个自变量，所以我们仍然采用单变量方差分析，我们的Model to relationship between specific quality descriptors of text-based reviews and rating levels based on One-Way ANOVA 建立如下\\
 \begin{enumerate}
-	\item 我们先对数据进行筛选，选出了评论中含‘enthusiastic’,‘disappointed’的样本
+	\item 我们先对数据进行筛选，统计出现频率较高的specific quality descriptors，如"disappointed","love","great".
 	\item 进一步筛选样本，因为有人会在‘disappointed’前加‘not’，使意思相反，所以去除这些样本
 	\item 基于评论是否含含关键词进行热编码分类，并基于此进行单因素方差分析。
 \end{enumerate}
 我们最后得到的统计结果图如下所示：\\
+\begin{table}[htb]
+	\center
+	\caption{"disappointed"}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		0        & 11250             & 4.16           & 1.27         & 0.012    & 745.936 & 0.000    \\
+		1          & 220          & 1.82           & 0.84         & 0.06    &  & \\ \hline
 
+	\end{tabular}
+\end{table}
+\begin{table}[htb]
+	\center
+	\caption{"love"}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		0        & 9042             & 3.97           & 1.36         & 0.01    & 553.465 & 0.000    \\
+		1          & 2428          & 4.65           & 0.85         & 0.02    &  & \\ \hline
+
+	\end{tabular}
+\end{table}
+\begin{table}[htb]
+	\center
+	\caption{"great"}
+	\label{type}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\hline
+		\textbf{} & \textbf{N} & \textbf{Mean}& \textbf{Std.Deviation}& \textbf{Std.Error}& \textbf{F}& \textbf{Sig.} \\ \hline 
+		0        & 8700             & 3.99           & 1.37         & 0.02    & 346.118 & 0.000    \\
+		1          & 2770          & 4.51           & 0.93         & 0.02    &  & \\ \hline
+	\end{tabular}
+\end{table}
+\\
+这表明含不含关键词对星级的分布有显著影响。下面我们用柱状图表示具体的分布：
+\\
+\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.5\textwidth]{figures/dis.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
+	\label{fig4} %用于文内引用的标签
+	
+\end{figure}
+\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.5\textwidth]{figures/love.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
+	\label{fig4} %用于文内引用的标签
+	
+\end{figure}
+\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+	\centering %图片居中
+	\includegraphics[width=0.5\textwidth]{figures/great.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
+	\label{fig4} %用于文内引用的标签
+\end{figure}
+\\
 从图中我们可以得出以下结论：
 \begin{itemize}
-	\item 当用户看到星级为xxx时，更愿意对产品进行评论
-	\item 当用户看到星级为xxx时，更不愿意对产品进行评论
+	\item 含关键词“disappointed”的评论和星级1密切相关；
+	\item 含关键词“love”或“great”或“good”的评论和星级5密切相关。
 \end{itemize}
 
 
