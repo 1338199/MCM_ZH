@@ -99,67 +99,25 @@ Plastic waste; LCA; SVR; EASEWASTE; AHP
 \newpage
 %\setcounter{page}{1}
 %%
-%% Generate the Memorandum, if it's needed.
-\memoto{ICM officials}
-\memofrom{Team 2013573}
-\memosubject{Global Plastic Waste Issue}
-\memodate{\today}
-%\logo{\LARGE I'm pretending to be a LOGO!}
-\begin{memo}[Memorandum]
-
-It is a great honor for us to be hired to address this increasingly severe situation crisis. Current global plastic waste has exceeded the environmental tolerance level, therefore an achievable level of reducing plastic waste is badly needed. Considering the mutual influence between plastic industry and human community, we have managed to find out an appropriate global target minimum of single-use plastic waste and the timeline to meet it. 
-
-We are pleased to tell you that we make it to estimate an appripriate target for a specific country. In Section4, the impact of plastic usage on human licing standards is explored by SVR algorithm. And based on the thought of not affecting much of human living standards, training results of different SVR kernel functions are utilized to predict minimum plastic usage in a particular area. 
-
-As for the global target mimimum achievable levels of single-use or disposable plastic product waste that we both concern most,  we divided the world into 10 typical countries according to their plastic consumption amount,  and for each category of countries the target for minimum plastic use is calculated. Then add up those predicted outcomes and a global target minimum achievable target is obtained. As we demostrate in our paper, the total minimal plastic consumption obtained is about 6.6 hundred million tons.
-
-Every target needs a schedule to  realize, no mention to this grand plane to make the global plastic production and usage reach the defined level. Hence we need design a feasible timeline to achieve this level. However, according to our sensitivity analysis results, countries have various sensitivity to every single factor. It seems unrealistic to set the same timeline for all countries because they are in different industry structures.  So the better way is to consider several timelines separately for disparate countries. 
-
-
-The majority of developed country has developed mature services. Although they use a lot of plastics, their plastic waste have been managed well due to their advanced recovery technologies. For them, reducing plastic means higher quality and efficiency of management. This is not a difficult task, but it requires a lot of perseverance and determination. However, manufacturing takes a prior part of domestic economy in most developing country and reducing the production of plastic is likely to threaten economy growth. For developing countries, reducing the use of plastic is a pain, because it means slowing development. In order not to deprive of the right of development of poor population, we suggest a loose timetable for medium-income and low-income countries to optimize their industrial structure and reduce plastic waste.
-
-Given all above we discussed, we decide to propose the timelime as follow:
-
-By 2035, developed countries will first achieve reductions to established targets, and will begin to study how to further reduce the use of plastic. 
-By 2050, all countries around the world will reach a lower level of plastic use. 
-
-The main consideration of this timeline is that the amount of plastic used in developed countries is much larger than that in developing countries, but they pay less to reduce it than in developing countries, as is presented before. But this issue cannot be generalized. For example, for the case we studied in China, the biggest problem is actually improper management. However, environmental and industrial factors cannot be ignored. The best way is to use our model to study all regions of the world as closely as possible to get an exact answer. This may be a laborious task, but it is definitely worth it.
-
-There is a long way to go to achieve this goal between now and the future.  So we list some circumstances that may affect the achievement of the target:
-
-As for technology, if relevant research about plastic waste managing make remarkable progress and the findings are quickly implemented by environmental sector, the process of plastic reduction will be accelerated. 
-
-Besides, taking economic growth into account, it is likely that the government loosen regulations of plastic management in a recession to guarantee the economic growth. Take Bolsonaro administration for example, local government usually attach less importance to environmental issues.
-
-Wish the given advice above would contribute to your work!
-
-\thispagestyle{empty}
-
-\end{memo}
 
 %%
 \setcounter{page}{1}
 \section{Introduction}
 \subsection{Background}
+对于亚马逊等电商平台来说，最不缺的就是顾客的评价和评论，评级通常用1到5星五个等级来表达，而文本评论让客户有了表达更多想法和反馈的机会。但是如何利用好这庞大的评价和评级数据却也是个不小的挑战。运用好这些数据不仅能帮助商家针对性地提供客户服务，还能发现潜在的高销量以及低销量商品，进行运营策略的调整，或者及时地改善产品。
 
-The plastic industry can date back to1950s. Over the past 60 years, the production of plastic has grown rapidly, which has surpassed most other artificial materials\cite{Geyer}. While people then did not realize the potential negative influence of plastic usage to ecosystem, plastic waste gradually accumulated in the environment because of it’s non-biodegradable trait. Some scholar believe that plastic bags and Styrofoam containers can take up to 1,000 years to decompose\cite{Giacovelli}. 6,300Mt plastic waste has been generated in 2015, while only 9\% of which had been recycled and reused. 12\% of them were incinerated and the percentage of plastics that discarded in landfills or natural environment was up to 79\%\cite{Geyer}. Plastics in nature especially in the ocean will cause a series of ecological problems. Apart form the chemical affects to organisms, plastic ingestion and entanglement are also threatening the diversity of species\cite{LI}. It is easy to imagine that if no measure is taken, human will facing severe degradation and pollution caused by enormous plastic waste.
-
-Besides, the management of the plastic waste is one of the hardest issue on integrated municipal solid waste. There are many researches that focus on the plastic recovery routes based on the life cycle assessment approach (LCA) \cite{Rigamonti}, and a few methods to assess the impact of solid waste system and technologies, which aim at develop more effective ways to migrate the plastic waste problem\cite{Kirkeby}.
-
-However, it seems that there are few researchers that explored the valuation model of estimating the maximal use of plastics nor utility policy to reduce the usage of plastics remarkably. That indicates there is still room for further explanation in this area. 
-
-%The management of the plastic waste is one of the most controversial topic in the discussion on integrated municipal solid waste area.
 
 \subsection{Problem statement}
 
-Living in the age that are characterized by a series of  troublesome environmental problems, such as global warming, desertification, pollution of water and poor air quality. Our team is hired to estimate the maximal permitted amount of plastic products, migrate the plastic production and reduce plastic waste. In another word, we need to answer the following questions:
+现在，阳光公司打算在线推出三款新的产品，分别是：微波炉，婴儿奶嘴以及吹风机，并获取了客户的历史评级和评论。他们希望从评论，评级中挖掘出有效的信息，帮助公司更好地制定销售策略，增强产品的效用。他们希望以下的问题能得到合理的解决：
 
 \begin{enumerate}
-	\item What is the maximal level of single-use or disposable plastic products without further pollution?
-	\item What extent can plastic waste be reduced to?
-	\item What is the minimal achievable level of global single-use or disposable plastic products and what are the impact on certain facets of reaching this level?
-	\item How to solve the equity problem about plastic waste that arise from global crisis?
-	\item How to build a timeline to approuch our target level we set before and describe our exploration to ICM?
+	\item 产品的星级，评论和帮助评分之间到底有什么样的关系?能否把评论量化，探究三者之间的数学联系？
+	\item 怎样建立一个模型能综合评级和评论两个因素，并帮助公司获取有效信息，调整营销策略？
+	\item 是否能从时间的角度描述产品的信誉，从而能看出产品在在线市场上的声誉变化？
+	\item 根据文本评价和评级，我们怎么才能发现潜在的成功或失败的产品?
+	\item 特定的星级与评论数之间是否有关联?换句话说什么样的评级更能吸引客户进行评论？
+	\item 文本评价的主题词例如：‘高兴’，‘失望’是否和特定的评级紧密相关？
 \end{enumerate}
 
 %\subsection{Our work}
@@ -184,28 +142,27 @@ Living in the age that are characterized by a series of  troublesome environment
 
 同样，声誉的计算需要先对某一产品的评论进行LDA处理，转化为离散的等级值, 为了考虑评论的可信度，我们还考虑了vine, verified\_purchase, helpful\_votes, tot\_votes几个字段，这些字段可以对评论的准确度进行衡量，因为购买过产品的评论才更可信，helpful votes高的评论才更具有参考性。
 
-通过建模，并对xxxx年xx月的pacifer样本(xxx,xxx,xxx,xxx)计算，我们发现，在该月内，样本xxxx的声誉更高，而xxxx的评论数也确实是最多的，说明我们的模型确实是可靠的。
+通过建模，并对2015年7月-8月评论数大于25的pacifer样本进行计算，我们发现，在7-8月，样本'wubbanub soft toy and pacifier'的声誉更高，销售前景最大；样本'philips aventbpa free soothie pacifier, 3+ months, green, 2 count'的声誉最低，销售前景最差。
 
 \subsubsection{Relations between time and reputation}
-产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
+产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络\cite{li2016nonlinear}对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
 \begin{itemize}
 	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
 	\item 然后利用信誉转换模型得到所有样本的信誉
 	\item 接着以一天为单位时间，利用RBF神经网络，对信誉与时间作拟合
 	\item 最后，根据拟合曲线，我们发现
-	philips奶嘴的信誉总的变化趋势是xxxx，在xxxx年xx月xx日最低，xxxx年xx月xx日达到最低
+	philips奶嘴的信誉在2015年5月30日有极小值，在5月10日有极大值，并在下一问中对出现极大、极小值的原因进行了分析。
 \end{itemize}
-对其他两类产品也可以作类似的处理，这些结果提示阳光公司xxxxx
 
 \subsubsection{Indication of potentially successful or failing product}
 正如上文中提到的信誉会随时间波动，那么我们拟合的曲线自然会有拐点。因此我们定义如果曲线将迎来极大值，那么这个产品将成为潜在的成功产品；如果曲线将迎来极小值，那么这个产品将成为潜在的失败产品。\\
 
-为了方便处理，我们建模时只考虑曲线的最大和最小值，可以通过对曲线最大、最小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
+为了方便处理，我们建模时只考虑曲线的一组极大和极小值，可以通过对曲线极大、极小值附近的星级、评论进行聚类，找到词频最高的主题词与星级。当这些主题词和星级出现的时候就意味着很可能产品的声誉将迎来拐点。\\
 
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 
 \subsubsection{relationship between specific star ratings and more reviews}
-特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。我们需要统计前一时间段内的平均星级，以及下一个时间段内的评论总数，来寻找它们的关系。以Pacifier为例
+特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。可以使用单因素方差分析,我们需要统计前一时间段内的平均星级，以及下一个时间段内的评论总数，来寻找它们的关系。以Pacifier为例
 \begin{itemize}
 	\item 首先，我们挑选Pacifier中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'(样本数为833)
 	\item 然后统计该产品的不同时间段间的评论数，以及时间段之前的平均星级。
@@ -215,7 +172,7 @@ Living in the age that are characterized by a series of  troublesome environment
 \end{itemize}
 
 \subsubsection{relationship between specific quality descriptors of text-based reviews and rating levels}
-题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。因为是寻找数据间的关系，我们可以判定这还是一个统计学问题。以吹风机为例
+题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。因为是寻找数据间的关系，我们可以判定这还是一个统计学问题,仍可以采用单因素方差分析,以吹风机为例
 \begin{itemize}
 	\item 首先，我们对吹风机中的评论进行词频统计，选出频率较高的，且是specific quality descriptors的词语。
 	\item 然后，我们挑选吹风机中含关键词的评论，我们基于是否含关键词，对评论进行0,1编码。
@@ -229,13 +186,13 @@ To simplify the problem, we strive for the following assumptions:
 
 \begin{itemize}
 	
-	\item \textbf{The mass of annual plastic production equals to that of the annual plastic waste.} On the one hand, every pound of plastic produced will turn into waste. On the other hand, the lifeline of most sorts of plastic is under 20 so that given situation will not change acutely\cite{Geyer}.
+	\item \textbf{用户在评论前可以看到之前用户的评价星级，但不能看到很久以前的用户的评论星级。即只有前一个时间段的平均星级才对下一个时间段的评论产生影响。}.
 	
-	\item \textbf{Throughout the life cycle of plastic, the impact of plastic on environment in use phase is negligible.} Main environment issues that are related to plastic merely when it is produced or managed\cite{book}.
+	\item \textbf{评论情感倾向与星级相符。}.
 	
-	\item \textbf{Aiming to make plastic waste safely be mitigated, any waste should not be landfilled.} While it is extremely hard for plastic to biodegrate in solid, landfills are in great shortage.\cite{book}.
+	\item \textbf{一个时间段内的评论数量与情感满足正态分布。}
 	
-	\item \textbf{All the plastic waste produced will be managed.} In the long run, the NET plastic waste discarded in natural environment will approach zero by governments and NGOs’ efforts.
+	\item \textbf{用户给出的评价和星级只与当前产品相关。}
 	
 	\item \textbf{The proper quantity of pollutant emission of plastic waste should depend on the contribution of plastic industry to the gross domestic products.} The pollutant emission of plastic waste is just an ordinary part of the total emission, so the responsibility of environmental protection it takes should also be the proportional part, which is roughly estimated by the percentage of GDP that plastic industry contributes.
 	
@@ -273,8 +230,10 @@ Important symbols that in this article are listed in Table \ref{notation}.
 		$\mu$ & Compensate.\\
 		$\theta$ & The percentage of GDP plastic industry contributes, quantified by coefficient.\\
 		$\iota$ & Tossil fuel consumption percentage. Generally, $\iota$ equals 4\%.\\
-		$k$ & Proportional coefficient of carbon emission per unit of
-		$\overline{s_j}$
+		$k$ & Proportional coefficient of carbon emission per unit of\\
+		$\overline{s_j}$ &The length of the business cycle\\
+		$\overline{s_j}$ &The average star in the j-th business cycle\\
+		$C_{j+1}$	&The total number of comments in the (j+1)-th business cycle 
 
 energy consumption\\
 		\bottomrule 
@@ -283,40 +242,61 @@ energy consumption\\
 \end{table}
 
 \section{Model Construction}
-\label{lp}
 \subsection{Rating-review based reputation model}
+\label{task_b}
 通过对评级和评论建模可以得出产品的信誉，而更高的信誉意味着更高的潜在销量，可以帮助阳光公司作出更好的决策。建模过程如下：
 
 假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
 
-我们采用对数形式使得离散的各参数值更平滑，信誉模型初步建立为：
+我们采用对数形式使得中间计算更平滑，然后对该时段的信誉进行平均，最后参考文章\cite{subkhankulova2006comparative}用指数形式对结果差异进行放大,信誉模型初步建立为：
 \begin{equation}
-	F_{repu} =  log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+2))
+	F_{repu} =  e^{\frac{\sum_{i=1}^{n}(log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+1)+1))}{n}}
 	\label{priA}
 \end{equation}
 
-更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，我们认为vine字段和verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
+其中n为某时段评价数。为了方便处理，在模型中，当净有用投票数为负数时，统一设为-1，即这种评论对声誉没有贡献。
+
+更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，而vine或者verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
 \begin{equation}
 	\beta =\left\{\begin{matrix}
-xx & if &vine &or &verified\_pruchase = 'Y'\\ 
-1-xx,& else
+1+W_{r} & if &vine &or &verified\_pruchase = 'Y'\\ 
+W_{r},& else
 \end{matrix}\right.
 \label{hyperbeta}
 \end{equation}
-其中xx为上文中提到的xxx关系系数。
-为了验证模型的准确性，我们对xxxx年xx月xx号的所有pacifier产品做了声誉值计算，结果如图：
+其中$W_{r}$为上文中提到的评级和评论的关系系数。此处为0.61.
 
-然后我们又统计了该月pacifier各类产品的vine或verified purchase评论数近似作为该月的销量：
+为了检验我们的模型，我们先统计了从2015年7-8月的所有评论数在25条以上pacifier样本，分别为：
+\begin{itemize}
+	\item philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary, 标注为Sample1
+	\item wubbanub soft toy and pacifier，标注为Sample2
+	\item wubbanub brown monkey pacifier, 标注为Sample3
+	\item wubbanub infant pacifier - giraffe, 标注为Sample4
+	\item philips aventbpa free soothie pacifier, 3+ months, green, 2 count, 标注为Sample5
+	\item wubbanub brown puppy pacifier, 标注为Sample6
+\end{itemize}
+然后我们对6种样本计算了这两个月内的平均声誉值，结果如图：
 
-图中说明，pacifier中的xxxx产品声誉值更高，其在该月的潜在销量也越高。
+%然后我们又统计了整个2015年8月，pacifier这6种样本的有效评论数(vine或verified purchase为yes)，近似表征该月的销量：
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth]{figures/reputations.png} 
+	\caption{The reputations of six samples calculated from July to August 2015}
+	\label{reputations} %用于文内引用的标签
+	
+\end{figure}
+图中说明，2015年7月-8月pacifier中的Sample2、Sample4属于同一档，产品声誉值较高，意味着更好的销售前景; 其次是Sample3和Smaple6属于同一档; 最后是Sample1,Sample5属于同一档，声誉值较低，意味着销售前景并不明朗。事实上，我们发现Sample5的评级里确实充斥着1星，2星，评论中也不乏许多差评。
+
 \subsection{Reputation-time model based on RBF regression}
-探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
+探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。受到\cite{tang2015user}的启发，我们可以采用神经网络进行信誉的拟合及预测。
+
+此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
 	\begin{itemize}
-		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本。
-		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本。
-		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
+		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本, 分布在557个日期。
+		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本,分布在436个日期
+		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本，分布在224个日期
 	\end{itemize}
 	\item 将筛选出的样本代入信誉模型，得到样本信誉随时间变化的离散序列。
 	\item 搭建RBF网络：
@@ -326,25 +306,41 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 		\item 测试RBF网络，得到拟合结果图。
 	\end{enumerate}
 \end{enumerate}
-我们最后得到的拟合结果图如下所示：\\
-
-从图中我们可以得出以下结论：
+我们得到的2015年部分拟合结果图如下所示：\\
+\begin{figure}[H]
+\begin{minipage}[t]{0.48\linewidth}	
+\centering
+\includegraphics[width=1.0\textwidth]{figures/curve_pacifier.jpg}
+\caption{Fitting Curve of Reputations of Pacifier}	  
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}	
+\centering
+\includegraphics[width=1.0\textwidth]{figures/curve_hair.jpg}
+\caption{Fitting Curve of Reputations of Hair Dryer}	  
+\end{minipage}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/curve_wave.jpg}
+\caption{Fitting Curve of Reputations of Microwave}	  
+\end{figure}
+从图中我们可以观察到以下现象：
 \begin{itemize}
-	\item Pacifier总的趋势是xxxx，Hair Dryer总的趋势是xxx，Microwave总的趋势是xxx，这可能是因为xxxxx
-	\item 对于Pacifier信誉最低出现在xxxx年xx月xx号，Hair Dryer信誉最低出现在xxxx年xx月xx号，Microwave信誉最低出现在xxxx年xx月xx号。具体的原因分析我们将在下一问中进行阐述。
-	\item 对于Pacifier信誉最高出现在xxxx年xx月xx号，Hair Dryer信誉最高出现在xxxx年xx月xx号，Microwave信誉最高出现在xxxx年xx月xx号。同样，我们将在下一问讨论出现该现象的原因。
+	\item 对于Pacifier信誉极小值出现在2015年5月30号左右，Hair Dryer信誉极小值出现在2015年5月19号左右，Microwave信誉极小值出现在6月7号左右。出现极小值的原因我们将在下一问中进行阐述。
+	\item 对于Pacifier信誉极大值出现在2015年5月10号左右，Hair Dryer信誉极大值出现在6月9号左右，Microwave信誉极大值出现在5月26号左右。同样，我们将在下一问讨论出现极大值的原因。
 \end{itemize}
 
 \subsection{Model to indicate potentially successful or failing product}
-在我们的建模中，拟合曲线最大值附近常出现的主题词和星级是出现潜在成功产品的标志，而拟合曲线最小值附近常出现的主题词和星级是出现潜在失败产品的标志。\\
+在我们的建模中，拟合曲线极大值附近常出现的主题词和星级是出现潜在成功产品的标志，而拟合曲线极小值附近常出现的主题词和星级是出现潜在失败产品的标志。\\
 
-以Pacifier为例，根据图\ref{}, 拟合曲线最大值出现的时间点为xxxx年xx月xx日（标记为$t_{1}$)，拟合曲线最小值出现的时间点为xxxx年xx月xx日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
+以Pacifier为例，根据图\ref{curve_pacifier}, 拟合曲线极大值出现的时间点为2015年5月10日左右（标记为$t_{1}$)，拟合曲线最小值出现的时间点为2015年5月30日(标记为$t_{2}$)，分别抽取$t_{1}$，$t_{2}$附近7个时间点的星级和评论，我们进行LDA文本分析并聚类，结果如下：
 
-我们发现，最大值附近，xxx和xx容易出现，这很可能是因为xxxx；最小值附近，xx和xxx容易出现，而这可能是因为xxx。
+我们发现，极大值附近，xxx和xx容易出现，这很可能是因为xxxx；极小值附近，xx和xxx容易出现，而这可能是因为xxx。
 
 
 \subsection{Model to relationship between specific star ratings and more reviews}
-在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA 建立如下\\
+在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析\cite{stoline1981status}，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA 建立如下\\
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
 	\begin{itemize}
@@ -357,7 +353,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 	平均星级可以为$[1,5]$之间任意值，为了方便寻求关系，我们将其离散化，可以通过将$[1,5]$均分为4个小区间，每个小区间对应为一类，再将$\overline{s_j}$根据其大小分到不同的类别$A_p$中。所以，问题被转化成特定的星级区间$A_p$，是否对应更多的下一个时间段的评论数$C_{j+1}$。由于只考虑星级对评论数的影响，我们采用单因素方差分析。
 \end{enumerate}
 单因素方差分析要求各变量服从正态分布，且满足方差齐：\\
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{Test of Homogeneity of Variances}
 	\label{type}
@@ -368,7 +364,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 	\end{tabular}
 \end{table}
 从图中我们发现满足方差齐，可以运用单因素方差分析：\\
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{ANOVA}
 	\label{type}
@@ -390,7 +386,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 \end{enumerate}
 我们最后得到的统计结果图如下所示：\\
 
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{Descriptive of the percentage of negative comment}
 	\label{type}
@@ -403,7 +399,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 	\end{tabular}
 \end{table}
 
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{Descriptive of the percentage of medium comment}
 	\label{type}
@@ -416,7 +412,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 	\end{tabular}
 \end{table}
 
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{Descriptive of the percentage of medium comment}
 	\label{type}
@@ -438,12 +434,12 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 \subsection{Model to relationship between specific quality descriptors of text-based reviews and rating levels}
 要判断是否在评论中出现关键词和星级是否有关，显然只有是否出现关键词一个自变量，所以我们仍然采用单变量方差分析，我们的Model to relationship between specific quality descriptors of text-based reviews and rating levels based on One-Way ANOVA 建立如下\\
 \begin{enumerate}
-	\item 我们先对数据进行筛选，统计出现频率较高的specific quality descriptors，如"disappointed","love","great".
+	\item 我们先对数据进行筛选，统计出现频率较高的specific quality descriptors，如"disappointed",\\"love","great".
 	\item 进一步筛选样本，因为有人会在‘disappointed’前加‘not’，使意思相反，所以去除这些样本
 	\item 基于评论是否含含关键词进行热编码分类，并基于此进行单因素方差分析。
 \end{enumerate}
 我们最后得到的统计结果图如下所示：\\
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{"disappointed"}
 	\label{type}
@@ -455,7 +451,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 
 	\end{tabular}
 \end{table}
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{"love"}
 	\label{type}
@@ -467,7 +463,7 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 
 	\end{tabular}
 \end{table}
-\begin{table}[htb]
+\begin{table}[H]
 	\center
 	\caption{"great"}
 	\label{type}
@@ -478,30 +474,27 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 		1          & 2770          & 4.51           & 0.93         & 0.02    &  & \\ \hline
 	\end{tabular}
 \end{table}
-\\
+
 这表明含不含关键词对星级的分布有显著影响。下面我们用柱状图表示具体的分布：
 \\
-\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
-	\centering %图片居中
-	\includegraphics[width=0.5\textwidth]{figures/dis.png} %插入图片，[]中设置图片大小，{}中是图片文件名
-	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
-	\label{fig4} %用于文内引用的标签
-	
-\end{figure}
-\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
-	\centering %图片居中
-	\includegraphics[width=0.5\textwidth]{figures/love.png} %插入图片，[]中设置图片大小，{}中是图片文件名
-	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
-	\label{fig4} %用于文内引用的标签
-	
-\end{figure}
-\begin{figure}[htb] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
-	\centering %图片居中
-	\includegraphics[width=0.5\textwidth]{figures/great.png} %插入图片，[]中设置图片大小，{}中是图片文件名
-	\caption{The parts of plastics’ life cycle that might cause damage to the environment.} %最终文档中希望显示的图片标题
-	\label{fig4} %用于文内引用的标签
-\end{figure}
-\\
+\begin{figure}[H]
+	\begin{minipage}[t]{0.48\linewidth}	
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/dis.png}
+	\caption{Fitting Curve of Reputations of Pacifier}	  
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.48\linewidth}	
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/love.png}
+	\caption{Fitting Curve of Reputations of Hair Dryer}	  
+	\end{minipage}
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.48\textwidth]{figures/great.png}
+	\caption{Fitting Curve of Reputations of Microwave}	  
+	\end{figure}
 从图中我们可以得出以下结论：
 \begin{itemize}
 	\item 含关键词“disappointed”的评论和星级1密切相关；
@@ -509,10 +502,8 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 \end{itemize}
 
 
-
 %We noticed that this puzzle is a maximization problem with several limiting conditions. So linear programming(LP) must be the best way to approach the answer we want.
 
-Maximal plastic waste is a problem related to plastic production, using, and recycling. Based on LCA, we analyzed all the pollution generated in the life cycle of plastics, and then reduced this problem into a linear programming model. Finally, we use the simplex method to solve based on an example.
 
 \subsection{Theories related to our model}
 
@@ -1234,6 +1225,29 @@ As can be seen from the table \ref{spc}, the shadow price of China's marine garb
 
 In terms of natural resources, air has the largest shadow price. For China, priority should be given to reducing the production and use of plastics with more air pollution as much as possible, which will have the most obvious ecological benefits to the region.
 
+\section{Sensitivity Analysis}
+\subsection{Hyper-parameter $\beta$}
+在我们的声誉模型中，超参数$\beta$被设定为与关系系数$W_{r}$相关，并且我们认为评论比评级更重要\cite{zhang2006lord}，尤其是体验过产品后写下的评论，因为这是人们经过仔细思考后写下的感受，更能反映客户体验。因此，在我们的模型中$\beta$会增大评论的权重。
+
+事实上，我们发现我们的模型对$\beta$具有一定的鲁棒性，即$\beta$的轻微波动不会影响声誉的最终结果：
+
+我们分别把$\beta$公式Eq.\ref{hyperbeta}中的$W_{r}$从0.61换成了0.2和1.2，重新对section \ref{task_b}中的样本进行了计算，结果如下：
+\begin{figure}[H] 
+\begin{minipage}[t]{0.48\linewidth}	
+	\centering 
+	\includegraphics[width=1\textwidth]{figures/reputations_n.png} 
+	\caption{The reputations of six samples calculated from July to August 2015 with lower $\beta$}
+	\label{reputations_n} %用于文内引用的标签
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}	
+	\centering 
+	\includegraphics[width=1\textwidth]{figures/reputations_nn.png} 
+	\caption{The reputations of six samples calculated from July to August 2015 with higher $\beta$}
+	\label{reputations_nn} %用于文内引用的标签
+\end{minipage}
+\end{figure}
+对比Fig.\ref{reputations}, Fig.\ref{reputations_n}和Fig.\ref{reputations_nn}我们可以看到虽然声誉值的绝对大小改变了，但相对大小没有改变。Sample2, Sample4仍旧是第一档声誉的产品，Sample5依旧是样本中声誉处于最差一类的产品。
 \section{Strength and weakness}
 
 %In this section, we will discuss some other details about the model.
@@ -1242,7 +1256,7 @@ The strengths and Weaknesses of our model are summarized as follows:
 
 \subsection{Strengths}
 
-\textbf{Model complexity.} Our model incorporates relevant research results and considers many details, making the model complicated enough to include enough factors. Therefore, our model can analyze the situation in specific regions and draw targeted conclusions, which is conducive to practical use.
+\textbf{Model rationality.} 我们的模型选择了样本量最大的样本进行分析，可以得出最具有统计意义的结论。对于含虚拟变量的相关性，我们使用单因素方差分析模型，采用了7天作为一个商业周期，合理地划分了时间段。同时我们的模型不仅挖掘了星级对于评论的数量影响，还得到了低星级和高星级与评论语义的关系，且该关系较为合理。
 
 \textbf{Agreement between experimental data and real data.} In the process of estimating maximal plastic waste, our model based on PLC theory carefully consider the environmental impact of plastic in different phases of its life cycle rather than merely in the phase of management. What's more, despite the lack of data, our machine learning model still fits the data well. The results of tests on real data sets also validate the performance of our model, where experimental data and real data agrees well. 
 
@@ -1250,7 +1264,7 @@ The strengths and Weaknesses of our model are summarized as follows:
 
 \subsection{Weaknesses}
 
-\textbf{Data accuracy of the model.} In order to consider as many factors as possible, our model introduces more parameters. This makes it difficult to obtain our data, especially when related research is very scarce. Further we will try to simplify the model for different scenarios and improve the usability of the model.
+\textbf{Data amount of the model.} 样本量不太够，导致对于我们对星级的划分不够细腻，导致中等星级与评论间的关系不明显。
 
 \textbf{Macro analysis.} Our model is too detail-oriented and has insufficient performance in macro analysis. In global research, our model encountered some difficulties and showed some uncertainty. In the future, we will try to explore the relationship between the overall situation and the details, and strive to let our model to show the superiority in global problems, too.
 
@@ -1259,6 +1273,35 @@ The strengths and Weaknesses of our model are summarized as follows:
 To mitigate the plastic waste problem, we establish a linear programming base model to estimate the environmental impacts of plastic waste, and get the maximal plastic waste amount without further damage to environment. It is proved that the most extent plastic can be reduced to could be confirmed by HSVR model. A minimal target amount of plastic usage is achieved by expending HSVR model. The equity issue can also be solved by dual programming and sensitivity analysis of factors. Finally, we reckon a timeline to approach this realistic minimal target of plastic using amount. 
 
 \newpage
+
+%% Generate the Memorandum, if it's needed.
+\memoto{Marketing Director of Sunshine Company}
+\memofrom{Team 2013573}
+\memosubject{A Wealth of Data}
+\memodate{\today}
+%\logo{\LARGE I'm pretending to be a LOGO!}
+\begin{memo}[\textbf{Letter to Sunshine Company}]
+\noindent Dear Director:
+
+非常感谢您的信任，雇佣我们团队为您解决这一重要问题。众所周知，产品的评级和评价中蕴含着诸多宝贵的信息，我们希望我们团队从pacifier, microwave, hair dryer这三类评价和评级数据中挖掘出的信息，能帮助贵公司作出合理的销售策略调整以及产品的及时完善，希望我们提出的建议能对贵公司有所裨益。 
+
+第一问的分析与结果结论，以及意见. 
+
+对于如何综合产品的评级和评价为贵公司提供有效信息，我们团队先是对文本评论进行了有效地量化，然后充分利用helpful votes, vine, verified purchase等数据甄别了评价的可信度，同时用平均、对数平滑以及指数放大差异等思想，建立了一个较为鲁棒的模型，因为我们的模型总能给出各产品之间准确的相对信誉大小。我们相信，一个好的声誉能潜在地为一个产品带来更好的销量，因此我们建议贵公司对pacifier, microwave, hair dryer等产品作信誉评估，然后针对性地增加声誉高的产品的数量以及增大相应的宣传。就像我们论文中提到的一样，对于2015年7-8月的奶嘴产品，wubbanub infant pacifier - giraffe是上线销售首选。
+
+我们的拟合模型运用了强大的RBF神经网络，较为成功地拟合了信誉同时间的关系，这能帮助我们更好地总结和预测产品的信誉变化，以及从极大极小值中挖掘产品成功或失败的潜在因素，正如我们在文中提到的xxx词和xx评级出现的时候，我们要格外小心，这是产品的声誉会开始下降，需要贵公司及时完善产品。而当xxx词xxx评级出现的时候，贵公司可以放心地增加该产品的库存，因为该产品即将热销。
+
+
+第d问的分析与结果结论，以及意见. 
+
+第e问的分析与结果结论，以及意见. 
+
+如果我们的建议能对贵公司有所裨益，我们会非常欣慰。Wish the given advice above would contribute to your work! 
+
+\thispagestyle{empty}
+
+\end{memo}
+
 
 \begin{thebibliography}{99}
 \bibitem{Geyer} Geyer, Roland, Jenna R. Jambeck, and Kara Lavender Law. "Production, use, and fate of all plastics ever made." Science advances 3.7 (2017): e1700782.
@@ -1283,6 +1326,32 @@ To mitigate the plastic waste problem, we establish a linear programming base mo
 \bibitem{CGE}CGE model-encyclopedia of MBA think tanks. https://wiki.mbalib.com/wiki/CGE. Accessed 18 Feb. 2020.
 \bibitem{Analytic}Analytic Hierarchy Process - Wikipedia. https://en.wikipedia.org/wiki/Analytic\_hierarchy\_process. Accessed 18 Feb. 2020.
 
+
+%%%%
+\bibitem{li2016nonlinear}
+M.~M. Li and B.~Verma, ``Nonlinear curve fitting to stopping power data using
+  rbf neural networks,'' \emph{Expert Systems with Applications}, vol.~45, pp.
+  161--171, 2016.
+  
+  
+\bibitem{stoline1981status}
+M.~R. Stoline, ``The status of multiple comparisons: simultaneous estimation of
+  all pairwise comparisons in one-way anova designs,'' \emph{The American
+  Statistician}, vol.~35, no.~3, pp. 134--141, 1981.
+
+\bibitem{tang2015user}
+D.~Tang, B.~Qin, T.~Liu, and Y.~Yang, ``User modeling with neural network for
+  review rating prediction,'' in \emph{Twenty-Fourth International Joint
+  Conference on Artificial Intelligence}, 2015.
+  
+\bibitem{subkhankulova2006comparative}
+T.~Subkhankulova and F.~J. Livesey, ``Comparative evaluation of linear and
+  exponential amplification techniques for expression profiling at the
+  single-cell level,'' \emph{Genome biology}, vol.~7, no.~3, p. R18, 2006. 
+
+\bibitem{zhang2006lord}
+X.~Zhang and C.~Dellarocas, ``The lord of the ratings: is a movie's fate is
+  influenced by reviews?'' \emph{ICIS 2006 proceedings}, p. 117, 2006.
 
 \end{thebibliography}
 
