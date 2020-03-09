@@ -205,26 +205,24 @@ Living in the age that are characterized by a series of  troublesome environment
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 
 \subsubsection{relationship between specific star ratings and more reviews}
-特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。以吹风机为例
+特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。我们需要统计前一时间段内的平均星级，以及下一个时间段内的评论总数，来寻找它们的关系。以Pacifier为例
 \begin{itemize}
-	\item 首先，我们挑选吹风机中评论数最多的样本--'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple'(样本数为587)
+	\item 首先，我们挑选Pacifier中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'(样本数为833)
 	\item 然后统计该产品的不同时间段间的评论数，以及时间段之前的平均星级。
-	\item 接着因为自变量只有星级，所以我们使用单因素方差分析，寻找星级与评论之间的关系。
+	\item 因为自变量只有星级，我们将其离散化为高星级，中等星级，低星级。接着我们使用单因素方差分析，寻找星级与评论之间的关系。
 	\item 最后，根据统计结果，我们发现
-	在一段时间内的平均星级为xxx的产品，有更多的评论
+	在当前时间内的平均星级与下一个时间段内的评论总数间关系不强，但是经过对评论语义分析，我们将评论分为分为好评，中评，差评。我们发现在面对一段时间内产品都是中等星级时，用户更愿意给出差评和中评；在面对一段时间内产品都是高星级时，用户更愿意给出好评。	
 \end{itemize}
-对其他两类产品也可以作类似的处理。
 
 \subsubsection{relationship between specific quality descriptors of text-based reviews and rating levels}
-题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。我们可以判定这还是一个统计学问题。以吹风机为例
+题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。因为是寻找数据间的关系，我们可以判定这还是一个统计学问题。以吹风机为例
 \begin{itemize}
-	\item 首先，我们挑选吹风机中含关键词的评论。
-	\item 然后，我们基于是否含关键词，对评论进行0,1编码。
+	\item 首先，我们对吹风机中的评论进行词频统计，选出频率较高的，且是specific quality descriptors的词语。
+	\item 然后，我们挑选吹风机中含关键词的评论，我们基于是否含关键词，对评论进行0,1编码。
 	\item 接着因为自变量只有是否含关键词，所以我们继续使用单因素方差分析，寻找关键词与星级之间的关系。
 	\item 最后，根据统计结果，我们发现
-	含关键词xxx的评论和星级xxx密切相关。
+	含关键词“disappointed”的评论和星级1密切相关，含关键词“love”或“great”或“good”的评论和星级5密切相关。
 \end{itemize}
-对其他两类产品也可以作类似的处理，总结，得出结论。
 \section{Assumptions and justifications}
 
 To simplify the problem, we strive for the following assumptions:
