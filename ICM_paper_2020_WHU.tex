@@ -166,19 +166,19 @@ Whether a particular star rating will cause more comments. We can judge this is 
 \begin{itemize}
 	\item First of all, we selected the most commented samples in pacifier, which is 'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'(833 samples).
 	\item Then we count the number of comments between different time periods of the product and the average star rating before the time period.
-	\item Because the independent variable only has star rating, we discretize it into high star rating, medium star rating and low star rating. Then we use one-way ANOVA to find the relationship between star rating and reviews.
+	\item Because the independent variable only has star rating, we discretize it into high star rating, medium star rating and low star rating. Then we use one-way ANOVA to find the relationship between star ratings and reviews.
 	\item Finally, according to the statistics, we found that
 	The relationship between the average star rating in the current time and the total number of comments in the next time period is not strong, but after the semantic analysis of the comments, we divide the comments into positive comments, medium comments and bad comments. We found that in the face of a period of time when products are low stars, users are more willing to give negative comments; in the face of a period of time when products are high stars, users are more willing to give positive comments.
 \end{itemize}
 
 \subsubsection{Relationship between specific quality descriptors of text-based reviews and rating levels}
-The topic asks us to find out whether the specific words appearing in the comment, such as "dispropointed", "enthusiastericer", will be related to the rating of the comment. Because we are looking for the relationship between the data, we can determine whether this is a statistical problem. We can still use one-way ANOVA, taking the blower as an example.
+The topic asks us to find out whether the specific words appearing in the comment, such as "disappointed", "enthusiasm", will be related to the rating of the comment. Because we are looking for the relationship between the data, we can determine whether this is a statistical problem. We can still use one-way ANOVA, taking the blower as an example.
 \begin{itemize}
 	\item First of all, we make word frequency statistics for the comments in the hair dryer, and select the words with higher frequency.
 
 	\item Then, we select the comment with key words in the hair dryer. We code the comment 0 or 1 based on whether it contains key words or not.
 	
-	\item Then because the independent variable only contains keywords, we continue to use one-way ANOVA to find the relationship between keywords and star rating.
+	\item Then because the independent variable only contains keywords, we continue to use one-way ANOVA to find the relationship between keywords and star ratings.
 	
 	\item Finally, according to the statistics, we found that
 	comments with the keyword "disappointed" are closely related to star rating of one star, and comments with the keyword "love" or "great" or "good" are closely related to star rating of five stars.
@@ -191,7 +191,7 @@ To simplify the problem, we strive for the following assumptions:
 	
 	\item \textbf{Users can see the rating stars of previous users before commenting, but can't see the rating stars of users long ago. That is, only the average star rating of the previous time period can affect the comments of the next time period.}.
 	
-	\item \textbf{Comments on emotional tendencies are consistent with stars.}.
+	\item \textbf{Comments on emotional tendencies are consistent with star ratings.}
 	
 	\item \textbf{Star ratings in a time period satisfies the normal distribution.}
 	
@@ -336,8 +336,8 @@ W_{r},& else
 我们发现，极大值附近，xxx和xx容易出现，这很可能是因为xxxx；极小值附近，xx和xxx容易出现，而这可能是因为xxx。
 
 
-\subsection{Model to relationship between specific star ratings and more reviews}
-In our modeling, because there are and only specific stars will cause more comments from users. Obviously, there is only one independent variable of stars, so we use one-way ANOVA \cite{ross2017one}. Our Model to relationship between specific star ratings and more reviews based on One-Way ANOVA is built as follows\\
+\subsection{Model to the relationship between specific star ratings and more reviews}
+Because there are only specific star ratings can cause more comments from users. Obviously, there is only one independent variable, so we use one-way ANOVA \cite{ross2017one}. Our Model is built as follows.\\
 \begin{enumerate}
 	\item We first filter the data and select the most representative samples of each type of product:
 	\begin{itemize}
@@ -345,10 +345,10 @@ In our modeling, because there are and only specific stars will cause more comme
 		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 587 samples。
 		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 394 samples。
 	\end{itemize}
-	\item Further screening samples to remove comments whose star rating is inconsistent with comments.
-	\item Then we split the time into $d $days (generally 7 days for business) and assume that the comments in the next period are related to the average stars in the previous period. Next, the average star level $\ outline {s_j} $of the $i $product in the $j$-th time period and the number of comments in the next time period $C_{j + 1} $. We need to mine the relationship between $\ outline {s_j} $and $C_{j + 1} $:
+	\item Further, we screen samples to remove comments whose star ratings are inconsistent with comments.
+	\item Then we split the time into $d $ days (generally 7 days for business) and assume that the comments in the next period are related to the average star rating in the previous period. Next, the average star rating $\overline{s_j} $ of the $i $ product in the $j$-th time period and the number of comments in the next time period $C_{j + 1} $. We need to mine the relationship between $\overline{s_j} $and $C_{j + 1} $:
 
-	The average star level can be any value between $[1,5] $. For the convenience of seeking the relationship, we can discretize it by dividing $[1,5] $into four sections, each section is corresponding to one class, and then $\ outline {s_j} $is divided into different classes according to its value. So, the question is translated into, whether a specific star rating range corresponds to $C_{j + 1} $. Because we only consider the influence of star rating, we use one-way ANOVA.
+	The average star level can be any value between $[1,5] $. For the convenience of seeking the relationship, we can discretize it by dividing $[1,5] $into four sections, each section is corresponding to one class, and then $\overline{s_j} $ is divided into different classes according to its value. So, the question is translated into, whether a specific star rating range corresponds to $C_{j + 1} $. Because we only consider the influence of star rating, we use one-way ANOVA.
 \end{enumerate}
 One-way analysis of variance requires that all variables follow normal distribution, and the variance is uniform\\
 \begin{table}[H]
@@ -429,11 +429,11 @@ From the figure we can draw the following conclusions:
 	\item In the face of a period of time when products are high star rating, users are more willing to give positive comments.
 \end{itemize}
 
-\subsection{Model to relationship between specific quality descriptors of text-based reviews and rating levels}
-To determine whether there is a relationship between keywords and star rating in the comments, it is obvious that there is only one independent variable, so we still use one-way ANOVA. Our model to relationship between specific quality descriptors of text-based reviews and rating levels based on one way ANOVA is established as follows\\
+\subsection{Model to the relationship between specific quality descriptors of text-based reviews and rating levels}
+To determine whether there is a relationship between keywords and star ratings in the comments, it is obvious that there is only one independent variable, so we still use one-way ANOVA. Our model to relationship between specific quality descriptors of text-based reviews and rating levels based on one way ANOVA is established as follows\\
 \begin{enumerate}
-	\item We first filter the data and find the specific quality descriptors with high frequency, such as "dispointed", "love", "great".
-	\item Further, we also filter samples, because some people will add "not" before "disppointed" to make the meaning opposite. So we need to remove these samples
+	\item We first filter the data and find the specific quality descriptors with high frequency, such as "disappointed", "love", "great".
+	\item Further, we also filter samples, because some people will add "not" before "disappointed" to make the meaning opposite. So we need to remove these samples
 	\item Based on whether the comments contain keywords, we divided the samples. And based on this, one-way ANOVA is carried out.
 \end{enumerate}
 The final statistical results are as follows:\\
@@ -473,7 +473,7 @@ The final statistical results are as follows:\\
 	\end{tabular}
 \end{table}
 
-These show that the distribution of star rating is significantly affected by the key words. Now we use histogram to show the specific distribution：
+These show that the distribution of star ratings are significantly affected by the key words. Now we use histogram to show the specific distribution：
 \\
 \begin{figure}[H]
 	\begin{minipage}[t]{0.48\linewidth}	
@@ -495,8 +495,8 @@ These show that the distribution of star rating is significantly affected by the
 	\end{figure}
 From the figure we can draw the following conclusions:
 \begin{itemize}
-	\item Comments with the keyword "dispointed" are closely related to star rating 1;
-	\item Comments with the keyword "love" or "great" or "good" are closely related to star rating 5.
+	\item Comments with the keyword "disappointed" are closely related to star rating of one star;
+	\item Comments with the keyword "love" or "great" or "good" are closely related to star rating of five stars.
 \end{itemize}
 
 
@@ -1291,7 +1291,7 @@ To mitigate the plastic waste problem, we establish a linear programming base mo
 
 Our statistical model uses one-way ANOVA. After analyzing the average star rating of products in the past period of time and customers' comments of products after that, we find that when customers see products with lower star rating, they are more willing to publish negative comments; When they see products with higher star rating, they are more willing to publish positive comments. Therefore, we suggest that your company should try its best to improve the products before launching the products, so as to avoid more bad comments caused by low star rating, which will lead to a vicious circle.
 
-Our statistical model also finds that some words in the comments are related to specific star rating. For example, the comments with "dispointed" are closely related to the star rating of one star. For example the comments with "love" and "great" are closely related to the star rating of five stars. Therefore, we suggest that companies should focus on extracting comments with emotional words, research and analysis, and optimize products in a timely manner.
+Our statistical model also finds that some words in the comments are related to specific star ratings. For example, the comments with "disappointed" are closely related to the star rating of one star. For example the comments with "love" and "great" are closely related to the star rating of five stars. Therefore, we suggest that companies should focus on extracting comments with emotional words, research and analysis, and optimize products in a timely manner.
 
 如果我们的建议能对贵公司有所裨益，我们会非常欣慰。Wish the given advice above would contribute to your work! 
 
