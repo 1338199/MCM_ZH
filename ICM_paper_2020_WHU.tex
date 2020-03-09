@@ -161,24 +161,27 @@ Plastic waste; LCA; SVR; EASEWASTE; AHP
 
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 
-\subsubsection{relationship between specific star ratings and more reviews}
-特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。可以使用单因素方差分析,我们需要统计前一时间段内的平均星级，以及下一个时间段内的评论总数，来寻找它们的关系。以Pacifier为例
+\subsubsection{Relationship between specific star ratings and more reviews}
+Whether a particular star rating will cause more comments. We can judge this is a statistical problem and one-way ANOVA can be used. We need to count the average star rating in the previous period and the total number of comments in the next period to find their relationship. Take pacifier for example.
 \begin{itemize}
-	\item 首先，我们挑选Pacifier中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'(样本数为833)
-	\item 然后统计该产品的不同时间段间的评论数，以及时间段之前的平均星级。
-	\item 因为自变量只有星级，我们将其离散化为高星级，中等星级，低星级。接着我们使用单因素方差分析，寻找星级与评论之间的关系。
-	\item 最后，根据统计结果，我们发现
-	在当前时间内的平均星级与下一个时间段内的评论总数间关系不强，但是经过对评论语义分析，我们将评论分为分为好评，中评，差评。我们发现在面对一段时间内产品都是中等星级时，用户更愿意给出差评和中评；在面对一段时间内产品都是高星级时，用户更愿意给出好评。	
+	\item First of all, we selected the most commented samples in pacifier, which is 'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'(833 samples).
+	\item Then we count the number of comments between different time periods of the product and the average star rating before the time period.
+	\item Because the independent variable only has star rating, we discretize it into high star rating, medium star rating and low star rating. Then we use one-way ANOVA to find the relationship between star rating and reviews.
+	\item Finally, according to the statistics, we found that
+	The relationship between the average star rating in the current time and the total number of comments in the next time period is not strong, but after the semantic analysis of the comments, we divide the comments into positive comments, medium comments and bad comments. We found that in the face of a period of time when products are low stars, users are more willing to give negative comments; in the face of a period of time when products are high stars, users are more willing to give positive comments.
 \end{itemize}
 
-\subsubsection{relationship between specific quality descriptors of text-based reviews and rating levels}
-题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。因为是寻找数据间的关系，我们可以判定这还是一个统计学问题,仍可以采用单因素方差分析,以吹风机为例
+\subsubsection{Relationship between specific quality descriptors of text-based reviews and rating levels}
+The topic asks us to find out whether the specific words appearing in the comment, such as "dispropointed", "enthusiastericer", will be related to the rating of the comment. Because we are looking for the relationship between the data, we can determine whether this is a statistical problem. We can still use one-way ANOVA, taking the blower as an example.
 \begin{itemize}
-	\item 首先，我们对吹风机中的评论进行词频统计，选出频率较高的，且是specific quality descriptors的词语。
-	\item 然后，我们挑选吹风机中含关键词的评论，我们基于是否含关键词，对评论进行0,1编码。
-	\item 接着因为自变量只有是否含关键词，所以我们继续使用单因素方差分析，寻找关键词与星级之间的关系。
-	\item 最后，根据统计结果，我们发现
-	含关键词“disappointed”的评论和星级1密切相关，含关键词“love”或“great”或“good”的评论和星级5密切相关。
+	\item First of all, we make word frequency statistics for the comments in the hair dryer, and select the words with higher frequency.
+
+	\item Then, we select the comment with key words in the hair dryer. We code the comment 0 or 1 based on whether it contains key words or not.
+	
+	\item Then because the independent variable only contains keywords, we continue to use one-way ANOVA to find the relationship between keywords and star rating.
+	
+	\item Finally, according to the statistics, we found that
+	comments with the keyword "disappointed" are closely related to star rating of one star, and comments with the keyword "love" or "great" or "good" are closely related to star rating of five stars.
 \end{itemize}
 \section{Assumptions and justifications}
 
@@ -186,19 +189,13 @@ To simplify the problem, we strive for the following assumptions:
 
 \begin{itemize}
 	
-	\item \textbf{用户在评论前可以看到之前用户的评价星级，但不能看到很久以前的用户的评论星级。即只有前一个时间段的平均星级才对下一个时间段的评论产生影响。}.
+	\item \textbf{Users can see the rating stars of previous users before commenting, but can't see the rating stars of users long ago. That is, only the average star rating of the previous time period can affect the comments of the next time period.}.
 	
-	\item \textbf{评论情感倾向与星级相符。}.
+	\item \textbf{Comments on emotional tendencies are consistent with stars.}.
 	
-	\item \textbf{一个时间段内的评论数量与情感满足正态分布。}
+	\item \textbf{Star ratings in a time period satisfies the normal distribution.}
 	
-	\item \textbf{用户给出的评价和星级只与当前产品相关。}
 	
-	\item \textbf{The proper quantity of pollutant emission of plastic waste should depend on the contribution of plastic industry to the gross domestic products.} The pollutant emission of plastic waste is just an ordinary part of the total emission, so the responsibility of environmental protection it takes should also be the proportional part, which is roughly estimated by the percentage of GDP that plastic industry contributes.
-	
-	\item \textbf{All the plastic waste is mechanically sorted from plastic waste prior to incineration.} In fact, waste incineration plants are generally very formal and will complete the sorting work. Otherwise, they will be banned soon.
-	
-	\item \textbf{The material recycling facilities(MRFs) that sort and upgrade the received waste stream is the only way to recycled sorted PW.} There is no other mature processing method, and this method is used almost everywhere.
 	
 \end{itemize}
 
@@ -209,9 +206,9 @@ Important symbols that in this article are listed in Table \ref{notation}.
 	\caption{Notations} 
 	\center
 	\begin{tabular}{cp{0.7\columnwidth}}
-		\toprule 
+		\toprule
 		Symbols &Definition  \\ 
-		\midrule 
+		\midrule
 		$s_i $& Annual certain plastic production.  \\ 
 		$N_i$ & The number of $CO2$ generated by the combustion of 1 molecule specific plastic unit. \\ 
 		$EA$ & Emission to air. \\ 
@@ -340,19 +337,20 @@ W_{r},& else
 
 
 \subsection{Model to relationship between specific star ratings and more reviews}
-在我们的建模中，因为有且只有特定的星级会引起用户更多的评论，显然只有星级一个自变量，所以我们采用单变量方差分析\cite{stoline1981status}，我们的Model to relationship between specific star ratings and more reviews based on One-Way ANOVA \cite{One-Way ANOVA} 建立如下\\
+In our modeling, because there are and only specific stars will cause more comments from users. Obviously, there is only one independent variable of stars, so we use one-way ANOVA \cite{ross2017one}. Our Model to relationship between specific star ratings and more reviews based on One-Way ANOVA is built as follows\\
 \begin{enumerate}
-	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
+	\item We first filter the data and select the most representative samples of each type of product:
 	\begin{itemize}
-		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本。
-		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本。
-		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
+		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，833 samples。
+		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 587 samples。
+		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 394 samples。
 	\end{itemize}
-	\item 进一步筛选样本，去除评论和星级不符的评论。
-	\item 然后我们将时间分段，以$d$天（商业一般为7天）为一个周期，假设在下一个周期的评论与上一个周期的平均星级有关。接着，统计第$i$种产品的在第$j$个时间段的平均星级$\overline{s_j}$，以及下一个时间段的评论数$C_{j+1}$。我们需要挖掘$\overline{s_j}$与$C_{j+1}$的关系：
-	平均星级可以为$[1,5]$之间任意值，为了方便寻求关系，我们将其离散化，可以通过将$[1,5]$均分为4个小区间，每个小区间对应为一类，再将$\overline{s_j}$根据其大小分到不同的类别$A_p$中。所以，问题被转化成特定的星级区间$A_p$，是否对应更多的下一个时间段的评论数$C_{j+1}$。由于只考虑星级对评论数的影响，我们采用单因素方差分析。
+	\item Further screening samples to remove comments whose star rating is inconsistent with comments.
+	\item Then we split the time into $d $days (generally 7 days for business) and assume that the comments in the next period are related to the average stars in the previous period. Next, the average star level $\ outline {s_j} $of the $i $product in the $j$-th time period and the number of comments in the next time period $C_{j + 1} $. We need to mine the relationship between $\ outline {s_j} $and $C_{j + 1} $:
+
+	The average star level can be any value between $[1,5] $. For the convenience of seeking the relationship, we can discretize it by dividing $[1,5] $into four sections, each section is corresponding to one class, and then $\ outline {s_j} $is divided into different classes according to its value. So, the question is translated into, whether a specific star rating range corresponds to $C_{j + 1} $. Because we only consider the influence of star rating, we use one-way ANOVA.
 \end{enumerate}
-单因素方差分析要求各变量服从正态分布，且满足方差齐：\\
+One-way analysis of variance requires that all variables follow normal distribution, and the variance is uniform\\
 \begin{table}[H]
 	\center
 	\caption{Test of Homogeneity of Variances}
@@ -363,7 +361,7 @@ W_{r},& else
 		2.054                     & 2           & 812         & 0.129         \\ \hline
 	\end{tabular}
 \end{table}
-从图中我们发现满足方差齐，可以运用单因素方差分析：\\
+From the graph, we find that the variance is homogeneous, and we can use one-way ANOVA：\\
 \begin{table}[H]
 	\center
 	\caption{ANOVA}
@@ -375,16 +373,16 @@ W_{r},& else
 		Within Groups                     & 13402.85          & 812         & 16.51    &  & \\ \hline		
 	\end{tabular}
 \end{table}
-从图中我们可以发现
+We can see from the picture that:
 \begin{itemize}
-	\item 在当前时间内的平均星级与下一个时间段内的评论总数间关系不强
+	\item The relationship between the average stars in the current time period and the total number of comments in the next time period is not strong
 \end{itemize}
-后来，我们又对评论进行了语义分析：
+Later, we made a semantic analysis of the comments.
 \begin{enumerate}
-	\item 我们将评论根据语义分析的结果，分为了正面评价，中等评价，负面评价。
-	\item 然后我们统计时间段内正面平均，中等评价，负面评价的占比与$A_p$的关系
+	\item According to the results of semantic analysis, we divide comments into positive comments, medium comments and negative comments.
+	\item Then we calculated the relationship between the proportion of positive comments, medium comments and negative comments and $A_p $
 \end{enumerate}
-我们最后得到的统计结果图如下所示：\\
+The final statistical results are as follows:\\
 
 \begin{table}[H]
 	\center
@@ -425,20 +423,20 @@ W_{r},& else
 	\end{tabular}
 \end{table}
 
-从图中我们可以得出以下结论：
+From the figure we can draw the following conclusions:
 \begin{itemize}
-	\item 在面对一段时间内产品都是低等星级时，用户更愿意给出负面评价。
-	\item 在面对一段时间内产品都是高星级时，用户更愿意给出正面评价。
+	\item In the face of a period of time when products are low star rating, users are more willing to give negative comments.
+	\item In the face of a period of time when products are high star rating, users are more willing to give positive comments.
 \end{itemize}
 
 \subsection{Model to relationship between specific quality descriptors of text-based reviews and rating levels}
-要判断是否在评论中出现关键词和星级是否有关，显然只有是否出现关键词一个自变量，所以我们仍然采用单变量方差分析，我们的Model to relationship between specific quality descriptors of text-based reviews and rating levels based on One-Way ANOVA 建立如下\\
+To determine whether there is a relationship between keywords and star rating in the comments, it is obvious that there is only one independent variable, so we still use one-way ANOVA. Our model to relationship between specific quality descriptors of text-based reviews and rating levels based on one way ANOVA is established as follows\\
 \begin{enumerate}
-	\item 我们先对数据进行筛选，统计出现频率较高的specific quality descriptors，如"disappointed",\\"love","great".
-	\item 进一步筛选样本，因为有人会在‘disappointed’前加‘not’，使意思相反，所以去除这些样本
-	\item 基于评论是否含含关键词进行热编码分类，并基于此进行单因素方差分析。
+	\item We first filter the data and find the specific quality descriptors with high frequency, such as "dispointed", "love", "great".
+	\item Further, we also filter samples, because some people will add "not" before "disppointed" to make the meaning opposite. So we need to remove these samples
+	\item Based on whether the comments contain keywords, we divided the samples. And based on this, one-way ANOVA is carried out.
 \end{enumerate}
-我们最后得到的统计结果图如下所示：\\
+The final statistical results are as follows:\\
 \begin{table}[H]
 	\center
 	\caption{"disappointed"}
@@ -475,7 +473,7 @@ W_{r},& else
 	\end{tabular}
 \end{table}
 
-这表明含不含关键词对星级的分布有显著影响。下面我们用柱状图表示具体的分布：
+These show that the distribution of star rating is significantly affected by the key words. Now we use histogram to show the specific distribution：
 \\
 \begin{figure}[H]
 	\begin{minipage}[t]{0.48\linewidth}	
@@ -495,10 +493,10 @@ W_{r},& else
 	\includegraphics[width=0.48\textwidth]{figures/great.png}
 	\caption{Fitting Curve of Reputations of Microwave}	  
 	\end{figure}
-从图中我们可以得出以下结论：
+From the figure we can draw the following conclusions:
 \begin{itemize}
-	\item 含关键词“disappointed”的评论和星级1密切相关；
-	\item 含关键词“love”或“great”或“good”的评论和星级5密切相关。
+	\item Comments with the keyword "dispointed" are closely related to star rating 1;
+	\item Comments with the keyword "love" or "great" or "good" are closely related to star rating 5.
 \end{itemize}
 
 
@@ -900,7 +898,7 @@ In this section, we will introduce the quantitative standard of happiness, analy
 
 \subsubsection{The quantitative standard of happiness}
 
-We use the happiness quantification standard used by the World Happiness Report\cite{World}, where the happiness scores and rankings use data from the Gallup World Poll. The scores are based on answers to the main life evaluation question asked in the poll. This question, known as the Cantril ladder, asks respondents to think of a ladder with the best possible life for them being a 10 and the worst possible life being a 0 and to rate their own current lives on that scale. The scores are from nationally representative samples for the years 2013-2016 and use the Gallup weights to make the estimates representative. 
+We use the happiness quantification standard used by the World Happiness Report\cite{World}, where the happiness scores and ratings use data from the Gallup World Poll. The scores are based on answers to the main life evaluation question asked in the poll. This question, known as the Cantril ladder, asks respondents to think of a ladder with the best possible life for them being a 10 and the worst possible life being a 0 and to rate their own current lives on that scale. The scores are from nationally representative samples for the years 2013-2016 and use the Gallup weights to make the estimates representative. 
 
 Obviously, people's happiness depends not only on the amount of plastic consumed. In fact, plastic consumption and waste account for only a small part of the factors affecting people's happiness. There are six factors usually concerned to be relevant to happiness: economic production, social support, life expectancy, freedom, absence of corruption, and generosity. The data that estimates the extent to which each of six factors contribute to making life evaluations higher in each country than they are in Dystopia, a hypothetical country that has values equal to the world’s lowest national averages for each of the six factors, is also used to as part of the input of HSVR, with some preprocessing:
 
@@ -1291,10 +1289,9 @@ To mitigate the plastic waste problem, we establish a linear programming base mo
 
 我们的拟合模型运用了强大的RBF神经网络，较为成功地拟合了信誉同时间的关系，这能帮助我们更好地总结和预测产品的信誉变化，以及从极大极小值中挖掘产品成功或失败的潜在因素，正如我们在文中提到的xxx词和xx评级出现的时候，我们要格外小心，这是产品的声誉会开始下降，需要贵公司及时完善产品。而当xxx词xxx评级出现的时候，贵公司可以放心地增加该产品的库存，因为该产品即将热销。
 
+Our statistical model uses one-way ANOVA. After analyzing the average star rating of products in the past period of time and customers' comments of products after that, we find that when customers see products with lower star rating, they are more willing to publish negative comments; When they see products with higher star rating, they are more willing to publish positive comments. Therefore, we suggest that your company should try its best to improve the products before launching the products, so as to avoid more bad comments caused by low star rating, which will lead to a vicious circle.
 
-第d问的分析与结果结论，以及意见. 
-
-第e问的分析与结果结论，以及意见. 
+Our statistical model also finds that some words in the comments are related to specific star rating. For example, the comments with "dispointed" are closely related to the star rating of one star. For example the comments with "love" and "great" are closely related to the star rating of five stars. Therefore, we suggest that companies should focus on extracting comments with emotional words, research and analysis, and optimize products in a timely manner.
 
 如果我们的建议能对贵公司有所裨益，我们会非常欣慰。Wish the given advice above would contribute to your work! 
 
@@ -1304,7 +1301,9 @@ To mitigate the plastic waste problem, we establish a linear programming base mo
 
 
 \begin{thebibliography}{99}
-\bibitem{Geyer} Geyer, Roland, Jenna R. Jambeck, and Kara Lavender Law. "Production, use, and fate of all plastics ever made." Science advances 3.7 (2017): e1700782.
+\bibitem{ross2017one}A.~Ross and V.~L. Willson, ``One-way anova,'' in \emph{Basic and advanced
+	  statistical tests}.\hskip 1em plus 0.5em minus 0.4em\relax Brill Sense, 2017,
+	  pp. 21--24.
 \bibitem{Giacovelli} Giacovelli, Claudia. "Single-Use Plastics: A Roadmap for Sustainability." (2018).
 \bibitem{LI}LI, Wai Chin, H. F. Tse, and Lincoln Fok. "Plastic waste in the marine environment: A review of sources, occurrence and effects." Science of the Total Environment 566 (2016): 333-349.
 \bibitem{Rigamonti}Rigamonti, Lucia, et al. "Environmental evaluation of plastic waste management scenarios." Resources, Conservation and Recycling 85 (2014): 42-53.
