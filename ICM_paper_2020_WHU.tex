@@ -184,18 +184,17 @@ Living in the age that are characterized by a series of  troublesome environment
 
 同样，声誉的计算需要先对某一产品的评论进行LDA处理，转化为离散的等级值, 为了考虑评论的可信度，我们还考虑了vine, verified\_purchase, helpful\_votes, tot\_votes几个字段，这些字段可以对评论的准确度进行衡量，因为购买过产品的评论才更可信，helpful votes高的评论才更具有参考性。
 
-通过建模，并对2015年7月-8月评论数大于25的pacifer样本进行计算，我们发现，在7-8月，样本xxxx的声誉更高，销售前景最大；样本xxxx的声誉最低，销售前景最差。
+通过建模，并对2015年7月-8月评论数大于25的pacifer样本进行计算，我们发现，在7-8月，样本'wubbanub soft toy and pacifier'的声誉更高，销售前景最大；样本'philips aventbpa free soothie pacifier, 3+ months, green, 2 count'的声誉最低，销售前景最差。
 
 \subsubsection{Relations between time and reputation}
-产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
+产品的信誉会随着时间的变化而波动，而其中潜在的规律可能会对阳光公司有很大的启发。我们可以通过RBF神经网络\cite{}对(信誉-时间)作函数拟合，在得到拟合曲线后，就可以直观地观测到信誉的变化趋势。以奶嘴为例，
 \begin{itemize}
 	\item 首先，我们挑选奶嘴中评论数最多的样本--'philips avent bpa free soothie pacifier, 0-3 months, 2 pack'(样本数为833)
 	\item 然后利用信誉转换模型得到所有样本的信誉
 	\item 接着以一天为单位时间，利用RBF神经网络，对信誉与时间作拟合
 	\item 最后，根据拟合曲线，我们发现
-	philips奶嘴的信誉总的变化趋势是xxxx，在xxxx年xx月xx日最低，xxxx年xx月xx日达到最低
+	philips奶嘴的信誉在2015年5月30日有极小值，在5月10日有极大值，并在下一问中对出现极大、极小值的原因进行了分析。
 \end{itemize}
-对其他两类产品也可以作类似的处理，这些结果提示阳光公司xxxxx
 
 \subsubsection{Indication of potentially successful or failing product}
 正如上文中提到的信誉会随时间波动，那么我们拟合的曲线自然会有拐点。因此我们定义如果曲线将迎来极大值，那么这个产品将成为潜在的成功产品；如果曲线将迎来极小值，那么这个产品将成为潜在的失败产品。\\
@@ -204,8 +203,8 @@ Living in the age that are characterized by a series of  troublesome environment
 
 在我们的实验中发现当xxx和xx出现的时候，产品的声誉将下降，那么这个产品会成为潜在的失败产品;当xx和xx出现的时候，产品的声誉将上升，这个产品会成为潜在的成功产品。
 
-\subsubsection{relationship between specific star ratings and more reviews}
-特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。以吹风机为例
+\subsubsection{Relationship between specific star ratings and number of reviews}
+特定的星级是否会引起更多的评论，对此我们可以判断这是一个统计学问题。可以使用单因素方差分析，以吹风机为例
 \begin{itemize}
 	\item 首先，我们挑选吹风机中评论数最多的样本--'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple'(样本数为587)
 	\item 然后统计该产品的不同时间段间的评论数，以及时间段之前的平均星级。
@@ -215,8 +214,8 @@ Living in the age that are characterized by a series of  troublesome environment
 \end{itemize}
 对其他两类产品也可以作类似的处理。
 
-\subsubsection{relationship between specific quality descriptors of text-based reviews and rating levels}
-题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。我们可以判定这还是一个统计学问题。以吹风机为例
+\subsubsection{Relationship between specific quality descriptors of text-based reviews and rating levels}
+题目要求我们寻找出现在评论中的特定的词，如” disappointed”, ”enthusiasticer” ，是否会和评论的等级有关系。我们仍可以采用单因素方差分析，并结合曼彻斯特编码，以吹风机为例
 \begin{itemize}
 	\item 首先，我们挑选吹风机中含关键词的评论。
 	\item 然后，我们对含关键词的评论进行0,1编码。
@@ -289,21 +288,24 @@ energy consumption\\
 
 假定产品的星级为$R_{\alpha}$, 评论量化之后为$R_{\beta}$, 评论的helpful votes为$R_{h}$，则unhelpful votes($R_{u}$)为total votes减去helpful votes，净有用投票数为（$R_{h}-R_{u}$)，我们用净投票数加1作为因子再乘上量化后的评论，表征评价的可信度。
 
-我们采用对数形式使得离散的各参数值更平滑，信誉模型初步建立为：
+我们采用对数形式使得中间计算更平滑，然后对该时段的信誉进行平均，最后用指数形式对结果差异进行放大,信誉模型初步建立为：
 \begin{equation}
-	F_{repu} =  log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+1)+1)
+	F_{repu} =  e^{\frac{\sum_{i=1}^{n}(log_2(R_{\alpha}+1)+ \beta \times log_2(R_{\beta}\times(R_{h}-R_{u}+1)+1))}{n}}
 	\label{priA}
 \end{equation}
 
-为了方便处理，在模型中，当净有用投票数为负数时，统一设为-1，即这种评论对声誉没有贡献。更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，而vine或者verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
+其中n为某时段评价数。为了方便处理，在模型中，当净有用投票数为负数时，统一设为-1，即这种评论对声誉没有贡献。
+
+更进一步，超参数$\beta$一方面要能体现评级和评论的权重关系，另一方面还要能表征评论的可信度，而vine或者verified\_purchas字段为'Y'的评论是体验过产品的评论，更具有参考性。因此$\beta$的表达式如下：
 \begin{equation}
 	\beta =\left\{\begin{matrix}
-xx & if &vine &or &verified\_pruchase = 'Y'\\ 
-1-xx,& else
+1+W_{r} & if &vine &or &verified\_pruchase = 'Y'\\ 
+W_{r},& else
 \end{matrix}\right.
 \label{hyperbeta}
 \end{equation}
-其中xx为上文中提到的xxx关系系数。
+其中$W_{r}$为上文中提到的评级和评论的关系系数。此处为0.61.
+
 为了检验我们的模型，我们先统计了从2015年7-8月的所有评论数在25条以上pacifier样本，分别为：
 \begin{itemize}
 	\item philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary, 标注为Sample1
@@ -313,25 +315,25 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 	\item philips aventbpa free soothie pacifier, 3+ months, green, 2 count, 标注为Sample5
 	\item wubbanub brown puppy pacifier, 标注为Sample6
 \end{itemize}
-然后我们对6种样本计算了这5天内的平均声誉值，结果如图：
+然后我们对6种样本计算了这两个月内的平均声誉值，结果如图：
 
 %然后我们又统计了整个2015年8月，pacifier这6种样本的有效评论数(vine或verified purchase为yes)，近似表征该月的销量：
-%\begin{figure}[H] 
-%	\centering 
-%	\includegraphics[width=0.6\textwidth]{figures/valid_review.png} 
-%	\caption{The number and proportion of valid reviews of six samples in August 2015}
-%	\label{valid_review} %用于文内引用的标签
-%	
-%\end{figure}
-图中说明，2015年7月-8月pacifier中的xxxx产品声誉值最高，意味着更好的销售前景，xxx产品声誉值最低，意味着销售前景并不明朗。
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth]{figures/reputations.png} 
+	\caption{The reputations of six samples calculated from July to August 2015}
+	\label{reputations} %用于文内引用的标签
+	
+\end{figure}
+图中说明，2015年7月-8月pacifier中的Sample2、Sample4属于同一档，产品声誉值较高，意味着更好的销售前景; 其次是Sample3和Smaple6属于同一档; 最后是Sample1,Sample5属于同一档，声誉值较低，意味着销售前景并不明朗。事实上，我们发现Sample5的评级里确实充斥着1星，2星，评论中也不乏许多差评。
 \subsection{Reputation-time model based on RBF regression}
 探究产品信誉随时间的变化规律有助于阳光公司调整策略，增加收益。此处我们用RBF神经网络作信誉-时间的回归拟合，因为RBF具有很强的非线性拟合能力，可映射任意复杂的非线性关系，而且学习规则简单，便于计算机实现。我们的RBF-based reputation-time model建立过程如下：
 \begin{enumerate}
 	\item 我们先对数据进行筛选，选择每类产品最具代表性的样本:
 	\begin{itemize}
-		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本。
-		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本。
-		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本。
+		\item \textbf{Pacifier: }'philips avent bpa free soothie pacifier, 0-3 months, 2 pack, packaging may vary'，有833个样本, 分布在557个日期。
+		\item \textbf{Hair Dryer: }'remington ac2015 t|studio salon collection pearl ceramic hair dryer, deep purple', 有587个样本,分布在436个日期
+		\item \textbf{Microwave: }'danby 0.7 cu.ft. countertop microwave', 有394个样本，分布在224个日期
 	\end{itemize}
 	\item 将筛选出的样本代入信誉模型，得到样本信誉随时间变化的离散序列。
 	\item 搭建RBF网络：
@@ -341,13 +343,29 @@ xx & if &vine &or &verified\_pruchase = 'Y'\\
 		\item 测试RBF网络，得到拟合结果图。
 	\end{enumerate}
 \end{enumerate}
-我们最后得到的拟合结果图如下所示：\\
-
-从图中我们可以得出以下结论：
+我们得到的2015年部分拟合结果图如下所示：\\
+\begin{figure}[H]
+\begin{minipage}[t]{0.48\linewidth}	
+\centering
+\includegraphics[width=1.0\textwidth]{figures/curve_pacifier.jpg}
+\caption{Fitting Curve of Reputations of Pacifier}	  
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}	
+\centering
+\includegraphics[width=1.0\textwidth]{figures/curve_hair.jpg}
+\caption{Fitting Curve of Reputations of Hair Dryer}	  
+\end{minipage}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/curve_wave.jpg}
+\caption{Fitting Curve of Reputations of Microwave}	  
+\end{figure}
+从图中我们可以观察到以下现象：
 \begin{itemize}
-	\item Pacifier总的趋势是xxxx，Hair Dryer总的趋势是xxx，Microwave总的趋势是xxx，这可能是因为xxxxx
-	\item 对于Pacifier信誉最低出现在xxxx年xx月xx号，Hair Dryer信誉最低出现在xxxx年xx月xx号，Microwave信誉最低出现在xxxx年xx月xx号。具体的原因分析我们将在下一问中进行阐述。
-	\item 对于Pacifier信誉最高出现在xxxx年xx月xx号，Hair Dryer信誉最高出现在xxxx年xx月xx号，Microwave信誉最高出现在xxxx年xx月xx号。同样，我们将在下一问讨论出现该现象的原因。
+	\item 对于Pacifier信誉极小值出现在2015年5月30号左右，Hair Dryer信誉极小值出现在2015年5月19号左右，Microwave信誉极小值出现在6月7号左右。出现极小值的原因我们将在下一问中进行阐述。
+	\item 对于Pacifier信誉极大值出现在2015年5月10号左右，Hair Dryer信誉极大值出现在6月9号左右，Microwave信誉极大值出现在5月26号左右。同样，我们将在下一问讨论出现极大值的原因。
 \end{itemize}
 
 \subsection{Model to indicate potentially successful or failing product}
